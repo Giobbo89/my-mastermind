@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>MasterMind</title>
+	<meta name="description" content="Play MasterMind!">
+	<link rel="stylesheet" href="/css/style.css" type="text/css" media="screen">
+</head>
+
+<!-- Body della mia pagina principale -->
+<body>
+
+	<!-- Header che contiene il titolo della pagina -->
+	<header>
+		<h1>MasterMind</h1>
+	</header>
+	<!-- QUI VA INSERITO IL MENU DI NAVIGAZIONE -->
+	
+	<!-- Div che contiene il login e il register -->
+	<div id="not_logged">
+	
+		<!-- Div per controllare esiti corretti, DA CANCELLARE! -->
+		<div id="result"></div>
+		
+		<!-- Form per il login -->
+		<section id="form_login">
+			<h2>Login</h2>
+			
+			<form id="login">
+				<label for="nickname_login">Your Nickname</label>
+				<input type="text" name="nickname_login" value="" id="nickname_login"/><br/>
+				
+				<label for="password_login">Your Password</label>
+				<input type="password" name="password_login" value="" id="password_login"/><br/>
+				
+				<input type="submit" value="Login" />
+			</form>
+		</section>
+		
+		<!-- Form per la registrazione -->
+		<section id="form_register">
+			<h2>Register</h2>
+			
+			<form id="register">
+				<label for="nickname_reg">Your Nickname</label>
+				<input type="text" name="nickname_reg" value="" id="nickname_reg"/><br/>
+				
+				<label for="password_reg">Password</label>
+				<input type="password" name="password_reg" value="" id="password_reg"/><br/>
+				
+				<label for="password_reg_rep">Repeat Password</label>
+				<input type="password" name="password_reg_rep" value="" id="password_reg_rep"/><br/>
+				
+				<label for="mail_reg">Your Mail</label>
+				<input type="text" name="mail_reg" value="" id="mail_reg"/><br/>
+				
+				<input type="submit" value="Register" />
+			</form>
+		</section>
+	</div>
+	
+	<!-- Footer -->
+	<footer>
+		<div id="author">Autore: Teo Giacobbo 714217</div>
+		<div id="exam_session">Appello: XXXXXXXX</div>
+	</footer>
+	
+	<script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="/js/lib/mustache.js"></script>
+
+</body>
+</html>
