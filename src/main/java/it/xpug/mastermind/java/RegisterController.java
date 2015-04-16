@@ -17,7 +17,9 @@ public class RegisterController extends Controller{
 		String password = request.getParameter("password");
 		String password_rep = request.getParameter("password_rep");
 		String mail = request.getParameter("mail");
-		if(mail.indexOf('@')==-1){
+		if(nickname.equals("") || password.equals("") || password_rep.equals("") || mail.equals("")) {
+			writeBody(toJson("description", "All field is mandatory"));
+		} else if(mail.indexOf('@')==-1){
 			writeBody(toJson("description", "Mail not valid (doesn't have the '@')"));
 		}
 		else if (password.length()<8){

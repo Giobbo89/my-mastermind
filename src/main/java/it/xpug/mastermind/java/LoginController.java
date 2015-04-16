@@ -15,7 +15,9 @@ public class LoginController extends Controller{
 	public void service() throws IOException {
 		String nickname = request.getParameter("nickname");
 		String password = request.getParameter("password");
-		if(!users_rep.nicknameExists(nickname)) {
+		if(nickname.equals("") || password.equals("")) {
+			writeBody(toJson("description", "Insert nickname e password for login"));
+		} else if(!users_rep.nicknameExists(nickname)) {
 			writeBody(toJson("description", "This nickname doesn't exist"));
 		}
 		else if (!users_rep.passwordIsCorrect(nickname, password)) {

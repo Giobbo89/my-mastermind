@@ -1,7 +1,18 @@
 $(document).ready(function() {
 	$("#register").submit(on_register);
 	$("#login").submit(on_login);
+	loop();
 });
+
+function loop(){
+    $("#titolo").animate({color: "#fff555"}, "slow", function(){
+        $(this).animate({color: "#c5c5c5"}, 3000, function(){
+            $(this).animate({color: "#333333"},1500, function(){
+                loop();
+            });
+        });
+    });
+}
 
 function on_login() {
 	$.ajax({
@@ -38,6 +49,7 @@ function on_register() {
 }
 
 function on_register_success(data) {
+	$("#result").css("color", "red");
 	$("#result").text(data.description);
 }
 

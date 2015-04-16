@@ -3,7 +3,8 @@
 - Completato l'interfacciamento al database
 - Creata la classe repository per la tabella relativa agli utenti
 - Modificati i due controller con funzioni consistenti
+- Database funzionante: registrazione e login utente funzionano correttamente
 
 ## Cose da fare
-
-IMPORTANTE: testare il funzionamento di quanto fatto sino ad ora.
+- Cominciare ad inserire il template Mustache
+- Cominciare a creare le classi per una nuova partita e gestione logica di gioco
