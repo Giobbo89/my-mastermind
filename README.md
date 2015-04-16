@@ -1,15 +1,14 @@
 #MY MASTERMIND
 
-Creata la struttura base del progetto:
-- pagina principale index.html con riferimenti alle librerie Mustache e jQuery
-- foglio di stile per la pagina
-- le classi per gestire il database
-- la classe Main e quello relativa alla Servlet principale
-- struttura base delle varie cartelle e sottocartelle
-- sistemato il file pom e la dipendenza con postgresql
+- Cominciato a scrivere il file javascript che gestisce login e registrazione
+- Cominciato a modificare le varie classi per interfacciarsi al database
+- Create le classi controller per login e registrazione (al momento presentano solo del codice di prova)
+- Creata la classe che modella gli utenti
 
 ## Cose da fare
 
-Sistemare la classe Main e la Servlet per poter caricare il database.
+Completare la configurazione delle classi al database.
 
-Cominciare a costruire le classi relative al Login e alla Registrazione.
+Modificare i controller creati per fargli fare cose sensate.
+
+Cominciare a creare la classe repository per gli utenti.

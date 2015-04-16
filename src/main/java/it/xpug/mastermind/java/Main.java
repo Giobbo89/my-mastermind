@@ -12,7 +12,13 @@ public class Main {
 			port = "8080";
 		}
 
-		ReusableJettyApp app = new ReusableJettyApp(new IndexServlet());
+		DatabaseConfiguration configuration;
+		if (System.getenv("DATABASE_URL") != null)
+			configuration = new HerokuDatabaseConfiguration();
+		else
+			configuration = new PropertyFileDatabaseConfiguration("database.properties");
+		
+		ReusableJettyApp app = new ReusableJettyApp(new IndexServlet(configuration));
 		app.start(valueOf(port), "src/main/webapp");
 	}
 
