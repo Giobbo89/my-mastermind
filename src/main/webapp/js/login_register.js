@@ -18,7 +18,7 @@ function on_login() {
 }
 
 function on_login_success(data) {
-	$("#result").text(data);
+	$("#result").text(data.description);
 }
 
 function on_register() {
@@ -38,7 +38,7 @@ function on_register() {
 }
 
 function on_register_success(data) {
-	$("#result").text(data);
+	$("#result").text(data.description);
 }
 
 function on_error(data) {

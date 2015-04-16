@@ -16,16 +16,19 @@ public class IndexServlet extends HttpServlet {
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LoginController login = new LoginController(request, response);
-		RegisterController register = new RegisterController(request, response);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+		Database database = new Database(configuration);
+		UsersRepository users_rep = new UsersRepository(database);
+		
+		RegisterController reg_controller = new RegisterController(request, response, users_rep);
+		LoginController log_controller = new LoginController(request, response, users_rep);
+		
 		String uri = request.getRequestURI();
-		if (uri.equals("/login"))
-			login.service();
-		else if (uri.equals("/register"))
-			register.service();
-		else
-			out.println("Niente, mi spiace");
+		
+		if (uri.equals("/register")) {
+			reg_controller.service();
+		}
+		else if (uri.equals("/login")) {
+			log_controller.service();
+		}
 	}
 }

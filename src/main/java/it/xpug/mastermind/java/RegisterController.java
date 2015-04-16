@@ -5,18 +5,35 @@ import javax.servlet.http.*;
 
 public class RegisterController extends Controller{
 	
-	public RegisterController(HttpServletRequest request, HttpServletResponse response) {
+	private UsersRepository users_rep;
+	
+	public RegisterController(HttpServletRequest request, HttpServletResponse response, UsersRepository users_rep) {
 		super(request, response);
+		this.users_rep = users_rep;
 	}
 	
 	public void service() throws IOException {
-		response.setContentType("text/html");
 		String nickname = request.getParameter("nickname");
 		String password = request.getParameter("password");
 		String password_rep = request.getParameter("password_rep");
 		String mail = request.getParameter("mail");
-		PrintWriter out = response.getWriter();
-		out.write(nickname + ", " + password + ", " + password_rep + ", " + mail);
+		if(mail.indexOf('@')==-1){
+			writeBody(toJson("description", "Mail not valid (doesn't have the '@')"));
+		}
+		else if (password.length()<8){
+			writeBody(toJson("description", "Password is too short (minimum8 characters)"));
+		}
+		else if (!password.equals(password_rep)){
+			writeBody(toJson("description", "Passwords are not equal"));
+		}
+		else if (users_rep.nicknameExists(nickname)){
+			writeBody(toJson("description", "This nickname is already in use; please, select another"));
+		}
+		else {
+			User new_user = new User(nickname, password, mail);
+			users_rep.add(new_user);
+			writeBody(toJson("description", "Well done! You are registered now"));
+		}
 	}
 
 }
