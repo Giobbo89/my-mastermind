@@ -1,17 +1,33 @@
 $(document).ready(function() {
 	$("#register").submit(on_register);
 	$("#login").submit(on_login);
-	loop();
+	$("#bbb").click(activate_hide);
+	loop_h1();
+	loop_h2();
 });
 
-function loop(){
-    $("#titolo").animate({color: "#fff555"}, "slow", function(){
-        $(this).animate({color: "#c5c5c5"}, 3000, function(){
-            $(this).animate({color: "#333333"},1500, function(){
-                loop();
+function loop_h1() {
+    $("h1").animate({color: "#DC143C"}, 5000, function(){
+        $(this).animate({color: "#FFA500"}, 5000, function(){
+            $(this).animate({color: "#FFD700"},5000, function(){
+                loop_h1();
             });
         });
     });
+}
+
+function loop_h2() {
+    $("h2").animate({color: "#0000CD"}, 5000, function(){
+        $(this).animate({color: "#1E90FF"}, 5000, function(){
+            $(this).animate({color: "#228B22"},5000, function(){
+                loop_h2();
+            });
+        });
+    });
+}
+
+function activate_hide() {
+	$("#form_login").hide("blind", 1000);
 }
 
 function on_login() {
