@@ -16,15 +16,15 @@ public class LoginController extends Controller{
 		String nickname = request.getParameter("nickname");
 		String password = request.getParameter("password");
 		if(nickname.equals("") || password.equals("")) {
-			writeBody(toJson("description", "Insert nickname e password for login"));
+			writeBody(toJson("description", "all"));
 		} else if(!users_rep.nicknameExists(nickname)) {
-			writeBody(toJson("description", "This nickname doesn't exist"));
+			writeBody(toJson("description", "nick"));
 		}
 		else if (!users_rep.passwordIsCorrect(nickname, password)) {
-			writeBody(toJson("description", "The password is wrong"));
+			writeBody(toJson("description", "pass"));
 		}
 		else {
-			writeBody(toJson("description", "Welcome " + nickname));
+			writeBody(toJson("description", nickname));
 		}		
 	}
 	

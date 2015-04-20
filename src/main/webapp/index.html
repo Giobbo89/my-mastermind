@@ -11,19 +11,29 @@
 
 	<!-- Header che contiene il titolo della pagina -->
 	<header>
-		<h1>Master</h1><h2>Mind</h2>
+		<h1 style="color: white">Master</h1><h2 style="color: white">Mind</h2>
 	</header>
 	<!-- QUI VA INSERITO IL MENU DI NAVIGAZIONE -->
 	
+	<!-- Div che contiene il menu -->
+	<div id="menu">
+		<table>
+			<tr>
+				<th>Main</th>
+				<th>Rules</th>
+				<th>Ranking</th>
+				<th>Documentation</th>
+			</tr>
+		</table>
+		<div id="welcome">Welcome!</div>
+	</div>
+	
 	<!-- Div che contiene il login e il register -->
 	<div id="not_logged">
-	
-		<!-- Div per controllare esiti corretti, DA CANCELLARE! -->
-		<div id="result">Qui stampo il risultato</div>
 		
 		<!-- Form per il login -->
 		<section id="form_login">
-			<h3>Login</h3>
+			<h3 id="login_label">Login</h3>
 			
 			<form id="login">
 				<label for="nickname_login">Your Nickname</label>
@@ -33,15 +43,17 @@
 				<input type="password" name="password_login" value="" id="password_login"/><br/>
 				
 				<input type="submit" value="Login" />
+				
+				<div id="login_result"></div>
 			</form>
 		</section>
 		
 		<!-- Form per la registrazione -->
 		<section id="form_register">
-			<h3>Register</h3>
+			<h3 id="register_label">Register</h3>
 			
 			<form id="register">
-				<label for="nickname_reg">Your Nickname</label>
+				<label for="nickname_reg">Nickname</label>
 				<input type="text" name="nickname_reg" value="" id="nickname_reg"/><br/>
 				
 				<label for="password_reg">Password</label>
@@ -50,17 +62,32 @@
 				<label for="password_reg_rep">Repeat Password</label>
 				<input type="password" name="password_reg_rep" value="" id="password_reg_rep"/><br/>
 				
-				<label for="mail_reg">Your Mail</label>
+				<label for="mail_reg">Mail</label>
 				<input type="text" name="mail_reg" value="" id="mail_reg"/><br/>
 				
 				<input type="submit" value="Register" />
+				
+				<div id="register_result"></div>
 			</form>
 		</section>
 		
-		<!-- TASTO DA CANCELLARE, inserito solo per provare effetti -->
-		<button id="bbb">Premimi</button>
 	</div>
+
+	<div id="logged" style="display: none">
 	
+		<section id="new_game">
+			
+			<div id="start_istr">
+				Hello! To start a new game, press the button below. </br>
+				</br>
+				If you don't know the MasterMind game, read the rules. </br>
+				</br>
+				<button id="new_game_button">Start New Game!</button>
+			</div>
+			
+		</section>
+	
+	</div>	
 	<!-- Footer -->
 	<footer>
 		<div id="author">Autore: Teo Giacobbo 714217</div>

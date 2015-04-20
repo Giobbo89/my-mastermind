@@ -4,14 +4,37 @@ html * {
 }
 
 header {
-    width: 800px;
-    margin-bottom: 10px;
+    width: 790px;
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
     text-align: center;
     border-style: solid;
     border-width: 1px;
+    border-radius: 5px;
+}
+
+#menu {
+	width: 800px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+	float: left;
+	text-align: left;
+	table-layout: fixed;
+    width: 500px;
+}
+
+th, td {
+	table-layout: fixed;
+    width: 100px;
+}
+
+#welcome {
+	float: right;
+	margin-top: 3px;
 }
 
 #not_logged {
@@ -21,19 +44,28 @@ header {
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
-    border-style: solid;
-    border-width: 1px;
+}
+
+#logged {
+	width: 800px;
+	min-height: 300px;
+	margin-bottom: 5px;
+	text-align: center;
+	margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
 }
 
 footer {
-    width: 800px;
+    width: 790px;
     margin-bottom: 5px;
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
     border-style: solid;
     border-width: 1px;
-    overflow: hidden
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 h1 {
@@ -50,15 +82,56 @@ h3 {
 	font-size: 20px;
 }
 
+#register_label {
+	margin-right: 100px;
+}
+
+#login_label {
+	margin-right: 125px;
+}
+
+#login_result, #register_result {
+	font-weight: bold;
+	margin-top: 10px;
+	text-align:center;
+}
+
 #form_login {
+	height: 260px;
+	width: 305px;
 	float: left;
-	margin-left: 20px;
-	width: auto;
+	text-align: right;
+	padding-top: 20px;
+	padding-right: 25px;
+	padding-left: 5px;
+	border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
 }
 
 #form_register {
+	height: 260px;
+	width: 350px;
 	float: right;
-	margin-right: 50px;
+	text-align: right;
+	padding-top: 20px;
+	padding-right: 100px;
+	padding-left: 5px;
+	border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+#new_game {
+	height: 200px;
+	width: 599px;
+	float: left;
+	padding-top: 80px;
+	padding-right: 100px;
+	padding-left: 100px;
+	border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
 }
 
 #author {
@@ -69,4 +142,10 @@ h3 {
 #exam_session {
     float: right;
     width: auto;
+}
+
+.error {
+ 	border-style: solid;
+    border-width: medium;
+    border-color: #DC143C;
 }
