@@ -18,17 +18,21 @@ public class IndexServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Database database = new Database(configuration);
 		UsersRepository users_rep = new UsersRepository(database);
+		SessionsRepository sessions_rep = new SessionsRepository(database);
 		
 		RegisterController reg_controller = new RegisterController(request, response, users_rep);
-		LoginController log_controller = new LoginController(request, response, users_rep);
+		LoginController log_controller = new LoginController(request, response, users_rep, sessions_rep);
 		
 		String uri = request.getRequestURI();
 		
 		if (uri.equals("/register")) {
 			reg_controller.service();
 		}
-		else if (uri.equals("/login")) {
+		if (uri.equals("/login")) {
 			log_controller.service();
+		}
+		if (uri.equals("/check_log")) {
+			log_controller.check_log();
 		}
 	}
 }

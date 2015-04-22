@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	$("#register").submit(on_register);
 	$("#login").submit(on_login);
+	check_log();
+	
 	loop_h1();
 	loop_h2();
 });
@@ -28,12 +30,10 @@ function loop_h2() {
 function hide_login_register() {
 		$("#form_login").hide("slide", 1000);
 		$("#form_register").hide("slide", { direction: "right" }, 1000);
-		window.setTimeout("show_new_game()", 1100);
-}
-
-function show_new_game() {
-	$("#not_logged").hide();
-	$("#logged").show("slide", { direction: "down" }, 1000);
+		window.setTimeout(function() {
+			$("#new_game").show("slide", { direction: "down" }, 2000);
+			$("#table_menu").show("slide", { direction: "left" }, 2000);
+		}, 1100);
 }
 
 function on_login() {
@@ -50,15 +50,23 @@ function on_login() {
 	return false;
 }
 
+function check_log() {
+	$.ajax({
+		url: '/check_log',
+		method: 'get',
+		success: on_login_success,
+		error: on_error,
+	});
+	return false;
+}
+
 function on_login_success(data) {
-	$("#nickname_login").removeClass("error");
-	$("#password_login").removeClass("error");
-	$("#nickname_reg").removeClass("error");
-	$("#password_reg").removeClass("error");
-	$("#password_reg_rep").removeClass("error");
-	$("#mail_reg").removeClass("error");
+	$(".login_input").removeClass("error");
+	$(".reg_input").removeClass("error");
+	$("#login_result").text(" ");
+	$("#register_result").text(" ");
 	$("#login_result").css("color", "#DC143C");
-	var result = data.description;
+	var result = data.result;
 	if (result == "all") {
 		$("#login_result").text("Insert nickname and password to login");
 		$("#nickname_login").addClass("error");
@@ -70,6 +78,13 @@ function on_login_success(data) {
 		$("#login_result").text("The password is wrong");
 		$("#password_login").addClass("error");
 	} else {
+		$("#nickname_login").removeClass("error");
+		$("#password_login").removeClass("error");
+		$("#nickname_reg").removeClass("error");
+		$("#password_reg").removeClass("error");
+		$("#password_reg_rep").removeClass("error");
+		$("#mail_reg").removeClass("error");
+		$("#login_result").text("");
 		$("#welcome").hide("slide", { direction: "right" }, 1500);
 		$("#welcome").text("Welcome " + result + "!");
 		$("#welcome").show("slide", { direction: "right" }, 1500);
@@ -94,12 +109,10 @@ function on_register() {
 }
 
 function on_register_success(data) {
-	$("#nickname_login").removeClass("error");
-	$("#password_login").removeClass("error");
-	$("#nickname_reg").removeClass("error");
-	$("#password_reg").removeClass("error");
-	$("#password_reg_rep").removeClass("error");
-	$("#mail_reg").removeClass("error");
+	$(".login_input").removeClass("error");
+	$(".reg_input").removeClass("error");
+	$("#login_result").text(" ");
+	$("#register_result").text(" ");
 	$("#register_result").css("color", "#DC143C");
 	var result = data.description;
 	if (result == "all") {

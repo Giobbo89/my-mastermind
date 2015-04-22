@@ -1,11 +1,9 @@
 #MY MASTERMIND
 
-- Completato l'interfacciamento al database
-- Creata la classe repository per la tabella relativa agli utenti
-- Modificati i due controller con funzioni consistenti
-- Database funzionante: registrazione e login utente funzionano correttamente
-- Messa un pò posto l'interfaccia: aggiunto il cambio di schermata quando ci si logga e messaggi di errori
+- Aggiunta tabella per le sessioni al database
+- Create le classi Session e SessionRepository per la gestione delle sessioni
+- Modificato il controller del Login e la Servlet principale per controllare se vi è una sessione attiva
+- Ulteriormente prefezionata l'interfaccia grafica
 
 ## Cose da fare
-- Mettere a posto animazione di show() del new game
 - Cominciare a creare le classi per una nuova partita e gestione logica di gioco

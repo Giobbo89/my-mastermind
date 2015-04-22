@@ -17,11 +17,11 @@
 	
 	<!-- Div che contiene il menu -->
 	<div id="menu">
-		<table>
+		<table id="table_menu" style="display: none">
 			<tr>
-				<th>Main</th>
-				<th>Rules</th>
-				<th>Ranking</th>
+				<th><a href="javascript:go_to_main()">Main</a></th>
+				<th><a href="javascript:go_to_rules()">Rules</a></th>
+				<th><a href="javascript:go_to_ranking()">Ranking</a></th>
 				<th>Documentation</th>
 			</tr>
 		</table>
@@ -29,7 +29,7 @@
 	</div>
 	
 	<!-- Div che contiene il login e il register -->
-	<div id="not_logged">
+	<div id="main">
 		
 		<!-- Form per il login -->
 		<section id="form_login">
@@ -37,10 +37,10 @@
 			
 			<form id="login">
 				<label for="nickname_login">Your Nickname</label>
-				<input type="text" name="nickname_login" value="" id="nickname_login"/><br/>
+				<input type="text" name="nickname_login" value="" id="nickname_login" class="login_input"/><br/>
 				
 				<label for="password_login">Your Password</label>
-				<input type="password" name="password_login" value="" id="password_login"/><br/>
+				<input type="password" name="password_login" value="" id="password_login" class="login_input"/><br/>
 				
 				<input type="submit" value="Login" />
 				
@@ -54,16 +54,16 @@
 			
 			<form id="register">
 				<label for="nickname_reg">Nickname</label>
-				<input type="text" name="nickname_reg" value="" id="nickname_reg"/><br/>
+				<input type="text" name="nickname_reg" value="" id="nickname_reg" class="reg_input"/><br/>
 				
 				<label for="password_reg">Password</label>
-				<input type="password" name="password_reg" value="" id="password_reg"/><br/>
+				<input type="password" name="password_reg" value="" id="password_reg" class="reg_input"/><br/>
 				
 				<label for="password_reg_rep">Repeat Password</label>
-				<input type="password" name="password_reg_rep" value="" id="password_reg_rep"/><br/>
+				<input type="password" name="password_reg_rep" value="" id="password_reg_rep" class="reg_input"/><br/>
 				
 				<label for="mail_reg">Mail</label>
-				<input type="text" name="mail_reg" value="" id="mail_reg"/><br/>
+				<input type="text" name="mail_reg" value="" id="mail_reg" class="reg_input"/><br/>
 				
 				<input type="submit" value="Register" />
 				
@@ -71,20 +71,28 @@
 			</form>
 		</section>
 		
-	</div>
-
-	<div id="logged" style="display: none">
-	
-		<section id="new_game">
-			
+		<section id="new_game" style="display: none">
 			<div id="start_istr">
 				Hello! To start a new game, press the button below. </br>
 				</br>
 				If you don't know the MasterMind game, read the rules. </br>
 				</br>
+				</br>
 				<button id="new_game_button">Start New Game!</button>
 			</div>
-			
+			<img id="image_spinner" src="spinner.gif" style="display: none">	
+		</section>
+		
+		<section id="rules" style="display: none">
+			<div id="rules_istr">
+				RULES
+			</div>
+		</section>
+		
+		<section id="ranking" style="display: none">
+			<div id="ranking_istr">
+				RANKING
+			</div>
 		</section>
 	
 	</div>	
@@ -98,6 +106,7 @@
 	<script type="text/javascript" src="/js/lib/jquery-ui.js"></script>
 	<script type="text/javascript" src="/js/lib/mustache.js"></script>
 	<script type="text/javascript" src="/js/login_register.js"></script>
+	<script type="text/javascript" src="/js/game.js"></script>
 
 </body>
 </html>

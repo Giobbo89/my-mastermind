@@ -18,23 +18,23 @@ public class RegisterController extends Controller{
 		String password_rep = request.getParameter("password_rep");
 		String mail = request.getParameter("mail");
 		if(nickname.equals("") || password.equals("") || password_rep.equals("") || mail.equals("")) {
-			writeBody(toJson("description", "all"));
+			writeBody(toJson("result", "all"));
 		} else if(mail.indexOf('@')==-1){
-			writeBody(toJson("description", "mail"));
+			writeBody(toJson("result", "mail"));
 		}
 		else if (password.length()<8){
-			writeBody(toJson("description", "short"));
+			writeBody(toJson("result", "short"));
 		}
 		else if (!password.equals(password_rep)){
-			writeBody(toJson("description", "equal"));
+			writeBody(toJson("result", "equal"));
 		}
 		else if (users_rep.nicknameExists(nickname)){
-			writeBody(toJson("description", "nick"));
+			writeBody(toJson("result", "nick"));
 		}
 		else {
 			User new_user = new User(nickname, password, mail);
 			users_rep.add(new_user);
-			writeBody(toJson("description", "done"));
+			writeBody(toJson("result", "done"));
 		}
 	}
 

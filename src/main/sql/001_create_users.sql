@@ -4,6 +4,8 @@ create table users (
   password varchar(255) not null,
   mail varchar(255) not null,
   enc varchar(255) not null,
+  num_games integer not null,
+  average integer not null,
   primary key (nickname)
 );
 

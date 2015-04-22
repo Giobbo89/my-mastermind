@@ -16,6 +16,7 @@ header {
 
 #menu {
 	width: 800px;
+	min-height: 20px;
 	margin-left: auto;
     margin-right: auto;
 }
@@ -37,21 +38,11 @@ th, td {
 	margin-top: 3px;
 }
 
-#not_logged {
+#main {
     width: 800px;
     min-height: 300px; 
     margin-bottom: 5px;
     margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
-}
-
-#logged {
-	width: 800px;
-	min-height: 300px;
-	margin-bottom: 5px;
-	text-align: center;
-	margin-left: auto;
     margin-right: auto;
     padding: 5px;
 }
@@ -126,6 +117,33 @@ h3 {
 	height: 200px;
 	width: 599px;
 	float: left;
+	text-align: center;
+	padding-top: 80px;
+	padding-right: 100px;
+	padding-left: 100px;
+	border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+#rules {
+	height: 200px;
+	width: 599px;
+	float: left;
+	text-align: center;
+	padding-top: 80px;
+	padding-right: 100px;
+	padding-left: 100px;
+	border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+#ranking {
+	height: 200px;
+	width: 599px;
+	float: left;
+	text-align: center;
 	padding-top: 80px;
 	padding-right: 100px;
 	padding-left: 100px;

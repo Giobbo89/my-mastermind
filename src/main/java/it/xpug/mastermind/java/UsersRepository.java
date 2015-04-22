@@ -12,8 +12,8 @@ public class UsersRepository {
 	}
 	
 	public void add(User user) {
-		String sql = "INSERT INTO users (nickname, password, mail, enc) VALUES (?, ?, ?, ?)";
-		database.execute(sql, user.getNickname(), user.encryptedPassword(), user.getMail(), user.getEnc());
+		String sql = "INSERT INTO users (nickname, password, mail, enc, num_games, average) VALUES (?, ?, ?, ?, ?, ?)";
+		database.execute(sql, user.getNickname(), user.encryptedPassword(), user.getMail(), user.getEnc(), 0, 0);
 	}
 
 	public boolean passwordIsCorrect(String nickname, String password) {
