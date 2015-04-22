@@ -36,6 +36,22 @@ function hide_login_register() {
 		}, 1100);
 }
 
+function on_register() {
+	$.ajax({
+		url: '/register',
+		method: 'post',
+		success: on_register_success,
+		error: on_error,
+		data: {
+			nickname: $("#nickname_reg").val(),
+			password: $("#password_reg").val(),
+			password_rep: $("#password_reg_rep").val(),
+			mail: $("#mail_reg").val(),
+		},
+	});
+	return false;
+}
+
 function on_login() {
 	$.ajax({
 		url: '/login',
@@ -92,29 +108,13 @@ function on_login_success(data) {
 	}
 }
 
-function on_register() {
-	$.ajax({
-		url: '/register',
-		method: 'post',
-		success: on_register_success,
-		error: on_error,
-		data: {
-			nickname: $("#nickname_reg").val(),
-			password: $("#password_reg").val(),
-			password_rep: $("#password_reg_rep").val(),
-			mail: $("#mail_reg").val(),
-		},
-	});
-	return false;
-}
-
 function on_register_success(data) {
 	$(".login_input").removeClass("error");
 	$(".reg_input").removeClass("error");
 	$("#login_result").text(" ");
 	$("#register_result").text(" ");
 	$("#register_result").css("color", "#DC143C");
-	var result = data.description;
+	var result = data.result;
 	if (result == "all") {
 		$("#register_result").text("All fields are mandatory");
 		$("#nickname_reg").addClass("error");

@@ -19,10 +19,10 @@ public class RegisterController extends Controller{
 		String mail = request.getParameter("mail");
 		if(nickname.equals("") || password.equals("") || password_rep.equals("") || mail.equals("")) {
 			writeBody(toJson("result", "all"));
-		} else if(mail.indexOf('@')==-1){
+		} else if(mail.indexOf('@') == -1){
 			writeBody(toJson("result", "mail"));
 		}
-		else if (password.length()<8){
+		else if (password.length() < 8){
 			writeBody(toJson("result", "short"));
 		}
 		else if (!password.equals(password_rep)){

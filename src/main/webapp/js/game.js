@@ -1,29 +1,23 @@
-function go_to_main() {
-	if ($("#new_game").is(":hidden")) {
-		$("#rules").hide("slide", { direction: "up" }, 1000);
-		$("#ranking").hide("slide", { direction: "up" }, 1000);
-		window.setTimeout(function() {
-			$("#new_game").show("slide", { direction: "down" }, 2000);
-		}, 1100);
-	}
+$(document).ready(function() {
+	$("#new_game_button").click(on_new_game);
+});
+
+function on_new_game() {
+	$.ajax({
+		url: '/new_game',
+		method: 'get',
+		success: on_new_game_success,
+		error: on_error,
+	});
+	return false;
 }
 
-function go_to_rules() {
-	if ($("#rules").is(":hidden")) {
-		$("#new_game").hide("slide", { direction: "up" }, 1000);
-		$("#ranking").hide("slide", { direction: "up" }, 1000);
-		window.setTimeout(function() {
-			$("#rules").show("slide", { direction: "down" }, 2000);
-		}, 1100);
-	}
+function on_new_game_success(data) {
+	$("#start_new_game").hide();
+	$("#play_game").text("Game id: " + data.game_id + "   Try to guess: " + data.sequence);
+	$("#play_game").show();
 }
 
-function go_to_ranking() {
-	if ($("#ranking").is(":hidden")) {
-		$("#new_game").hide("slide", { direction: "up" }, 1000);
-		$("#rules").hide("slide", { direction: "up" }, 1000);
-		window.setTimeout(function() {
-			$("#ranking").show("slide", { direction: "down" }, 2000);
-		}, 1100);
-	}
+function on_error(data) {
+	$("#login_result").text(JSON.stringify(data.responseJSON));
 }

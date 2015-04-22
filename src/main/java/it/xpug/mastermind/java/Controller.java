@@ -26,6 +26,19 @@ public class Controller {
 	protected String toJson(String name, int value) {
 		return format("{ \"%s\": %s }", name, value);
 	}
+	
+	// metodo aggiunto per poter inserire più valori con relativo nome
+	protected String toJson(String[] names, String[] values) {
+		String json = "";
+		for (int i=0; i<names.length; i++) {
+			if (i != 0) {
+				json+= "," + format("\"%s\": \"%s\" ", names[i], values[i]);
+			} else {
+				json+= format("\"%s\": \"%s\" ", names[i], values[i]);
+			}
+		}
+		return "{" + json + "}";
+	}
 
 	protected void writeBody(String body) throws IOException {
 		response.getWriter().write(body);

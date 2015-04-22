@@ -36,14 +36,14 @@ public class LoginController extends Controller{
 	public void check_log() throws IOException {
 		try {
 			for (Cookie cookie : request.getCookies()) {
-			Session session = sessions_rep.getSession(cookie.getValue());
-			if (session != null) {
-				String nickname = session.getNickname();
-				writeBody(toJson("result", nickname));
-				return;
+				Session session = sessions_rep.getSession(cookie.getValue());
+				if (session != null) {
+					String nickname = session.getNickname();
+					writeBody(toJson("result", nickname));
+					return;
+				}
 			}
-		}
-		} catch (NullPointerException e) {}
+		} catch (NullPointerException e) { }
 	}
 	
 }
