@@ -40,13 +40,20 @@ public class GameController extends Controller{
 		Boolean check[] = {false, false, false, false};
 		String result = "";
 		for (int i=0; i<4; i++) {
-			if (attempt.charAt(i) == secret_seq.charAt(i))
+			if (attempt.charAt(i) == secret_seq.charAt(i)) {
+				check[i] = true;
 				result = result + "+";
-			else {
+			}
+		}
+		for (int i=0; i<4; i++) {
+			if (check[i] == false) {
 				for (int j=0; j<4; j++) {
-					if (attempt.charAt(i) == secret_seq.charAt(j)) {
-						result = result + "-";
-						break;
+					if (check[j] == false) {
+						if (attempt.charAt(i) == secret_seq.charAt(j)) {
+							check[j] = true;
+							result = result + "-";
+							break;
+						}
 					}
 				}
 			}
