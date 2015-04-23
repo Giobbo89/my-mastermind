@@ -17,7 +17,7 @@ public class GameController extends Controller{
 		this.games_rep = games_rep;
 	}
 
-	public void service() throws IOException {
+	public void new_game() throws IOException {
 		for (Cookie cookie : request.getCookies()) {
 			Session session = sessions_rep.getSession(cookie.getValue());
 			if (session != null) {
@@ -26,7 +26,32 @@ public class GameController extends Controller{
 				String[] values = {game.getGameId(),game.getSecretSeq()};
 				writeBody(toJson(names, values));
 			}
+		}
 	}
+	
+	public void move() throws IOException {
+		String attempt = request.getParameter("attempt");
+		String secret_seq = games_rep.getGameSecretSeq(request.getParameter("game_id"));
+		String result = compareSequence(secret_seq, attempt);
+		writeBody(toJson("result", result));
+	}
+	
+	private String compareSequence(String secret_seq, String attempt) {
+		Boolean check[] = {false, false, false, false};
+		String result = "";
+		for (int i=0; i<4; i++) {
+			if (attempt.charAt(i) == secret_seq.charAt(i))
+				result = result + "+";
+			else {
+				for (int j=0; j<4; j++) {
+					if (attempt.charAt(i) == secret_seq.charAt(j)) {
+						result = result + "-";
+						break;
+					}
+				}
+			}
+		}
+		return result;
 	}
 
 }

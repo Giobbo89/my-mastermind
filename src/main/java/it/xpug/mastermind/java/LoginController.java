@@ -15,7 +15,7 @@ public class LoginController extends Controller{
 		this.sessions_rep = sessions_rep;
 	}
 	
-	public void service() throws IOException {
+	public void login() throws IOException {
 		String nickname = request.getParameter("nickname");
 		String password = request.getParameter("password");
 		if(nickname.equals("") || password.equals("")) {

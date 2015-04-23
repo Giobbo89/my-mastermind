@@ -31,13 +31,16 @@ public class IndexServlet extends HttpServlet {
 			reg_controller.service();
 		}
 		if (uri.equals("/login")) {
-			log_controller.service();
+			log_controller.login();
 		}
 		if (uri.equals("/check_log")) {
 			log_controller.check_log();
 		}
 		if (uri.equals("/new_game")) {
-			game_controller.service();
+			game_controller.new_game();
+		}
+		if (uri.equals("/move")) {
+			game_controller.move();
 		}
 	}
 }

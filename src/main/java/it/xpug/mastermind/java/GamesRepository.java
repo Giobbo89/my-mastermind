@@ -33,4 +33,12 @@ public class GamesRepository {
 		return seq;
 		
 	}
+	
+	public String getGameSecretSeq(String game_id) {
+		String sql = "SELECT * FROM games WHERE game_id = ?";
+		ListOfRows rows = database.select(sql, game_id);
+		HashMap<String, Object> result = (HashMap<String, Object>) rows.get(0);
+		String secret_seq = (String) result.get("secret_seq");
+		return secret_seq;
+	}
 }

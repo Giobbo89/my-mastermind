@@ -31,7 +31,7 @@ function hide_login_register() {
 		$("#form_login").hide("slide", 1000);
 		$("#form_register").hide("slide", { direction: "right" }, 1000);
 		window.setTimeout(function() {
-			$("#new_game").show("slide", { direction: "down" }, 2000);
+			$("#game").show("slide", { direction: "down" }, 2000);
 			$("#table_menu").show("slide", { direction: "left" }, 2000);
 		}, 1100);
 }

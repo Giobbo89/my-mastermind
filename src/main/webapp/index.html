@@ -71,18 +71,33 @@
 			</form>
 		</section>
 		
-		<section id="new_game" style="display: none">
+		<section id="game" style="display: none">
 			<div id="start_new_game">
-				Hello! To start a new game, press the button below. </br>
-				</br>
-				If you don't know the MasterMind game, read the rules. </br>
-				</br>
-				</br>
+				Hello! To start a new game, press the button below. <br/>
+				<br/>
+				If you don't know the MasterMind game, read the rules. <br/>
+				<br/>
+				<br/>
 				<button id="new_game_button">Start New Game!</button>
 			</div>
 			
 			<div id="play_game" style="display: none">
-				Prova
+				<div id="form_to_guess">
+					The secrete sequence was created! <br/>
+					Try to guess it! <br/>
+					<form id="try_sequence">
+						<input type="text" name="attempt" value="" id="attempt" class="game_input"/>
+						<br/>
+						<input type="submit" value="Try to guess!"/>
+					</form>
+					<button type="button" id="abandon">Abandon</button>
+				</div>
+				<div id="inf_game">
+					Game id: <span id="game_id"></span> <br/>
+					Result last attempt: <span id="attempt_result"></span> <br/>
+					Secret sequence: <span id="secret_seq"></span>
+					<br/>	
+				</div>
 			</div>	
 		</section>
 		
