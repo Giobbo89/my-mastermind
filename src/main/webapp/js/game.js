@@ -1,3 +1,5 @@
+var cont_attempts;
+
 $(document).ready(function() {
 	$("#new_game_button").click(on_new_game);
 	$("#try_sequence").submit(on_move);
@@ -14,6 +16,7 @@ function on_new_game() {
 }
 
 function on_new_game_success(data) {
+	cont_attempts = 0;
 	$("#start_new_game").hide();
 	$("#game_id").text(data.game_id);
 	$("#secret_seq").text(data.sequence);
@@ -21,6 +24,8 @@ function on_new_game_success(data) {
 }
 
 function on_move() {
+	cont_attempts = cont_attempts + 1;
+	var cont = cont_attempts.toString();
 	$.ajax({
 		url: '/move',
 		method: 'post',
@@ -29,6 +34,7 @@ function on_move() {
 		data: {
 			game_id: $("#game_id").text(),
 			attempt: $("#attempt").val(),
+			att_number: cont,
 		},
 	});
 	return false;

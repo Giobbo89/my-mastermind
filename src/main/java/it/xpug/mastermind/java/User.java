@@ -3,14 +3,14 @@ package it.xpug.mastermind.java;
 import java.security.*;
 import java.util.*;
 
-// classe creata a partire dalla classe Cashier dell'esempio supermarket del prof,
+// classe che modella gli oggetti User, che rappresentano un utente
 
 public class User {
 	private String nickname; 
 	private String password;
 	private String mail;
-	private String enc; // stringa utilizzata per criptare la password (in modo da non utilizzare solamente la password stessa)
-
+	private String enc; // stringa generata randomicamente utilizzata per criptare la password
+	
 	public User(String nickname, String password, String mail) {
 		this.nickname = nickname;
 		this.password = password;

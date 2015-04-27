@@ -3,6 +3,8 @@ package it.xpug.mastermind.java;
 import it.xpug.generic.db.*;
 import java.util.*;
 
+// classe repository per la gestione della tabella sessions, in cui vengono salvate le varie sessioni relative agli utenti
+
 public class SessionsRepository {
 
 	private Database database;
@@ -11,6 +13,7 @@ public class SessionsRepository {
 		this.database = database;
 	}
 
+	// metodo che permette di creare una nuova sessione e aggiungerla alla tabella sessions
 	public Session createNewSession(String nickname) {
 		Random random = new Random();
 		int id = 1 + random.nextInt(2147483646);
@@ -21,6 +24,7 @@ public class SessionsRepository {
 		return session;
 	}
 
+	// metodo che restituisce un oggetto sessione a partire dall'id della sessione, passato come argomento 
 	public Session getSession(String session_id) throws IndexOutOfBoundsException {
 		try {
 		String sql = "SELECT * FROM sessions WHERE session_id = ?";

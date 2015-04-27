@@ -5,6 +5,8 @@ import it.xpug.generic.db.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+// servelt dell'applicazione alla quale pervengono tutte le richieste Ajax
+
 public class IndexServlet extends HttpServlet {
 
 	private DatabaseConfiguration configuration;
@@ -20,15 +22,17 @@ public class IndexServlet extends HttpServlet {
 		UsersRepository users_rep = new UsersRepository(database);
 		SessionsRepository sessions_rep = new SessionsRepository(database); 
 		GamesRepository games_rep = new GamesRepository(database);
+		AttemptsRepository attempts_rep = new AttemptsRepository(database);
 		
-		GameController game_controller = new GameController(request, response, users_rep, sessions_rep, games_rep);
+		GameController game_controller = new GameController(request, response, users_rep, sessions_rep, games_rep, attempts_rep);
 		RegisterController reg_controller = new RegisterController(request, response, users_rep);
 		LoginController log_controller = new LoginController(request, response, users_rep, sessions_rep);
 		
+		// prendo l'uri della richiesta ed eseguo l'operazione ad esso associata 
 		String uri = request.getRequestURI();
 		
 		if (uri.equals("/register")) {
-			reg_controller.service();
+			reg_controller.register();
 		}
 		if (uri.equals("/login")) {
 			log_controller.login();
