@@ -46,6 +46,22 @@ public class UsersRepository {
 		}
 	}
 	
+	public int getNumberGames(String nickname) {
+		String sql = "SELECT * FROM users WHERE nickname = ?";
+		ListOfRows result = database.select(sql, nickname);
+		HashMap<String, Object> user = (HashMap<String, Object>) result.get(0);
+		int num_games = (Integer) user.get("num_games");
+		return num_games;
+	}
+	
+	public float getAverage(String nickname) {
+		String sql = "SELECT * FROM users WHERE nickname = ?";
+		ListOfRows result = database.select(sql, nickname);
+		HashMap<String, Object> user = (HashMap<String, Object>) result.get(0);
+		float average = (float) user.get("average");
+		return average;
+	}
+	
 	// metodo che permette di verificare se il nickname passato come argomento esiste nel database
 	public boolean nicknameExists(String nickname) {
 		String sql = "SELECT * FROM users WHERE nickname = ?";

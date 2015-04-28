@@ -1,12 +1,10 @@
 #MY MASTERMIND
 
-- Aggiustata un pò l'interfaccia grafica per giocare la partita
-- Creata la classe AttemptsRepository (e la tabella attempts) e la logica che salva ogni tentativo fatto da un utente durante una partita
-- Aggiunti dati (data di inzio e fine, punti) relativi ad una partita
-- Aggiunti dati (numero di partite e media) realtivi ad un utente
-- Aggiornata la logica di tentativo nel caso si indovini la sequenza
+- Aggiunto template per visualizzare punteggio medio e numero di partite di un utente quando si logga
+- Aggiornato template (sopra) che si aggiorna quando si finisce una partita o la si abbandona
+- Aggiunta la possibilità di abbandono della partita (con relativa penalità)
+- Aggiustate varie piccole cose
 
 ## Cose da fare
-- Aggiungere la logica di abbandono partita
-- Aggiornare la parte client dopo aver fatto un tentativo
-- Cominciare a fare il template per la tabella dei tentativi fatti
+- Fare il template per la tabella dei tentativi fatti
+- Fare il template per la tabella del ranking

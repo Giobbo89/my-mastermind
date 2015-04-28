@@ -83,14 +83,16 @@
 			
 			<div id="play_game" style="display: none">
 				<div id="form_to_guess">
-					The secrete sequence was created! <br/>
-					Try to guess it! <br/>
+					<span id="inf_gen">
+						The secrete sequence was created! <br/>
+					</span>
 					<form id="try_sequence">
-						<input type="text" name="attempt" value="" id="attempt" class="game_input"/>
+						<input type="text" name="attempt" value="" id="attempt" class="game_input" maxlength="4"/>
 						<br/>
 						<input type="submit" value="Try to guess!"/>
 					</form>
 					<button type="button" id="abandon">Abandon</button>
+					<img id="spinner_end_game" alt="" src="/images/spinner.gif" style="display: none" />
 				</div>
 				<div id="inf_game">
 					Game id: <span id="game_id"></span> <br/>
@@ -114,12 +116,20 @@
 			</div>
 		</section>
 	
-	</div>	
+	</div>
+	<div id="general_inf">
+		<div id="user_inf" style="display: none"></div>
+	</div>
+	
 	<!-- Footer -->
 	<footer>
 		<div id="author">Autore: Teo Giacobbo 714217</div>
 		<div id="exam_session">Appello: XXXXXXXX</div>
 	</footer>
+	
+	<script id='template_user_inf' type="application/x-tmpl-mustache">
+      		You play {{n_games}} games and your average is {{avg}}
+    </script>
 	
 	<script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="/js/lib/jquery-ui.js"></script>

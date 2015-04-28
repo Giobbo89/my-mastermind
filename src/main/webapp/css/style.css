@@ -41,7 +41,6 @@ th, td {
 #main {
     width: 800px;
     min-height: 300px; 
-    margin-bottom: 5px;
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
@@ -136,7 +135,7 @@ h3 {
 	margin-top: 30px;
 }
 
-#abandon {
+#abandon, #spinner_end_game {
 	margin-top: 30px;
 }
 
@@ -170,6 +169,18 @@ h3 {
 	border-style: solid;
     border-width: 1px;
     border-radius: 5px;
+}
+
+#general_inf {
+	width: 800px;
+	min-height: 20px;
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: -20px;
+}
+
+#user_inf {
+	float: right;
 }
 
 #author {

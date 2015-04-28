@@ -1,6 +1,7 @@
 package it.xpug.mastermind.java;
 
 import java.io.*;
+
 import javax.servlet.http.*;
 
 // classe gestisce le operazioni relative ad una partita (creazione nuova partita e invio tentativo)
@@ -49,19 +50,50 @@ public class GameController extends Controller{
 		// dall'id della partita, risalgo all'utente che sta giocando la partita e alla sequenza segreta
 		String nickname = games_rep.getGameUser(game_id);
 		String secret_seq = games_rep.getGameSecretSeq(game_id);
+		String result = "";
+		String[] names = {"result","num_games", "average"};
 		// confronto il tentativo inviato con la sequenza segreta
-		String result = compareSequence(secret_seq, attempt);
-		// aggiungo il tentativo al database (in particolare alla tabella apposita)
-		this.attempts_rep.createNewAttempt(game_id, nickname, attempt, att_number, secret_seq, result);
-		// se il tentativo è vincente...
-		if (result.equals("++++")) {
-			// ...aggiorno la fine della partita, i punti fatti e la media dell'utente
-			this.games_rep.setGameFinishDate(game_id);
-			this.games_rep.setGamePoints(game_id, att_number);
-			int total = this.games_rep.getUserTotalPoints(nickname);
-			this.users_rep.updateGameFinished(nickname, att_number, total);
+		if (attempt.isEmpty() || attempt.length()<4)
+			result = "invalid_try";
+		else {
+			result = compareSequence(secret_seq, attempt);
+			// aggiungo il tentativo al database (in particolare alla tabella apposita)
+			this.attempts_rep.createNewAttempt(game_id, nickname, attempt, att_number, secret_seq, result);
+			// se il tentativo è vincente...
+			if (result.equals("++++")) {
+				// ...aggiorno la fine della partita, i punti fatti e la media dell'utente
+				this.games_rep.setGameFinishDate(game_id);
+				this.games_rep.setGamePoints(game_id, att_number);
+				int total = this.games_rep.getUserTotalPoints(nickname);
+				this.users_rep.updateGameFinished(nickname, att_number, total);
+				int num_games = this.users_rep.getNumberGames(nickname);
+				float average = this.users_rep.getAverage(nickname);
+				String[] values = {result, String.valueOf(num_games), String.valueOf(average)};
+				writeBody(toJson(names, values));
+			} else {
+				String[] values = {result, "null", "null"};
+				writeBody(toJson(names, values));
+			}
 		}
-		writeBody(toJson("result", result));
+	}
+	
+	public void abandon() throws IOException {
+		String num = request.getParameter("att_number");
+		int att_number = Integer.parseInt(num);
+		att_number = att_number + 15;
+		String game_id = request.getParameter("game_id");
+		// dall'id della partita, risalgo all'utente che sta giocando la partita e alla sequenza segreta
+		String nickname = games_rep.getGameUser(game_id);
+		String result = "";
+		String[] names = {"result","num_games", "average"};
+		this.games_rep.setGameFinishDate(game_id);
+		this.games_rep.setGamePoints(game_id, att_number);
+		int total = this.games_rep.getUserTotalPoints(nickname);
+		this.users_rep.updateGameFinished(nickname, att_number, total);
+		int num_games = this.users_rep.getNumberGames(nickname);
+		float average = this.users_rep.getAverage(nickname);
+		String[] values = {result, String.valueOf(num_games), String.valueOf(average)};
+		writeBody(toJson(names, values));
 	}
 	
 	// metodo privato che confronta i tentativi con la sequenza segreta

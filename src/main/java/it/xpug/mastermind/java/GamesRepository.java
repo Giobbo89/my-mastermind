@@ -26,7 +26,7 @@ public class GamesRepository {
 		String sql = "INSERT INTO games (game_id, user_nickname, secret_seq, points, start_date, finish_date) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		String sequence = secretSeqMaker();
-		database.execute(sql, game_id, nickname, sequence, "0", start_date);
+		database.execute(sql, game_id, nickname, sequence, 0, start_date, null);
 		return game_id;
 	}
 	

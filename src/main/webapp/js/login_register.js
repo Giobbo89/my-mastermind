@@ -33,6 +33,7 @@ function hide_login_register() {
 		window.setTimeout(function() {
 			$("#game").show("slide", { direction: "down" }, 2000);
 			$("#table_menu").show("slide", { direction: "left" }, 2000);
+			$("#user_inf").show("slide", { direction: "right" }, 2000);
 		}, 1100);
 }
 
@@ -94,18 +95,25 @@ function on_login_success(data) {
 		$("#login_result").text("The password is wrong");
 		$("#password_login").addClass("error");
 	} else {
-		$("#nickname_login").removeClass("error");
-		$("#password_login").removeClass("error");
-		$("#nickname_reg").removeClass("error");
-		$("#password_reg").removeClass("error");
-		$("#password_reg_rep").removeClass("error");
-		$("#mail_reg").removeClass("error");
+		$(".login_input").removeClass("error");
+		$(".reg_input").removeClass("error");
 		$("#login_result").text("");
 		$("#welcome").hide("slide", { direction: "right" }, 1500);
 		$("#welcome").text("Welcome " + result + "!");
 		$("#welcome").show("slide", { direction: "right" }, 1500);
+		$("#login")[0].reset();
+		template_user_inf(data.num_games, data.average);
 		hide_login_register();
 	}
+}
+
+function template_user_inf(num_games, average) {
+	var template = $('#template_user_inf').html();
+	var render = Mustache.render(template, {
+		n_games: num_games,
+		avg: average
+	});
+	$("#user_inf").html(render);
 }
 
 function on_register_success(data) {
@@ -135,9 +143,11 @@ function on_register_success(data) {
 		$("#register_result").text("This nickname is already in use; please, select another");
 		$("#nickname_reg").addClass("error");
 	} else if (result == "done") {
+		$(".login_input").removeClass("error");
+		$(".reg_input").removeClass("error");
 		$("#register_result").css("color", "#000000");
 		$("#register_result").text("Well done! Now you can login");
-		$("#form_register")[0].reset();
+		$("#register")[0].reset();
 	}
 }
 

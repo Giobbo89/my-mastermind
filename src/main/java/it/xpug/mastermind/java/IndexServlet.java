@@ -46,5 +46,8 @@ public class IndexServlet extends HttpServlet {
 		if (uri.equals("/move")) {
 			game_controller.move();
 		}
+		if (uri.equalsIgnoreCase("/abandon")) {
+			game_controller.abandon();
+		}
 	}
 }

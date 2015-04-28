@@ -38,7 +38,11 @@ public class LoginController extends Controller{
 		}
 		// se supero tutti i controlli, eseguo il login dell'utente e creo una nuova sessione per quell'utente
 		else {
-			writeBody(toJson("result", nickname));
+			int num_games = this.users_rep.getNumberGames(nickname);
+			float average = this.users_rep.getAverage(nickname);
+			String[] names = {"result","num_games", "average"};
+			String[] values = {nickname, String.valueOf(num_games), String.valueOf(average)};
+			writeBody(toJson(names, values));
 			Session session = sessions_rep.createNewSession(nickname);
 			response.addCookie(new Cookie("id_session", session.getSessionId()));
 		}		
@@ -53,7 +57,11 @@ public class LoginController extends Controller{
 				// se vi è una sessione specificata nel cookie, eseguo il login per quell'utente
 				if (session != null) {
 					String nickname = session.getNickname();
-					writeBody(toJson("result", nickname));
+					int num_games = this.users_rep.getNumberGames(nickname);
+					float average = this.users_rep.getAverage(nickname);
+					String[] names = {"result","num_games", "average"};
+					String[] values = {nickname, String.valueOf(num_games), String.valueOf(average)};
+					writeBody(toJson(names, values));
 					return;
 				}
 			}
