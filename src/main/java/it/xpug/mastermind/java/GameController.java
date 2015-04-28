@@ -53,8 +53,11 @@ public class GameController extends Controller{
 		String result = "";
 		String[] names = {"result","num_games", "average"};
 		// confronto il tentativo inviato con la sequenza segreta
-		if (attempt.isEmpty() || attempt.length()<4)
+		if (attempt.isEmpty() || attempt.length()<4) {
 			result = "invalid_try";
+			String[] values = {result, "null", "null"};
+			writeBody(toJson(names, values));
+		}
 		else {
 			result = compareSequence(secret_seq, attempt);
 			// aggiungo il tentativo al database (in particolare alla tabella apposita)

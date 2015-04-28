@@ -94,19 +94,22 @@
 					<button type="button" id="abandon">Abandon</button>
 					<img id="spinner_end_game" alt="" src="/images/spinner.gif" style="display: none" />
 				</div>
-				<div id="inf_game">
-					Game id: <span id="game_id"></span> <br/>
-					Result last attempt: <span id="attempt_result"></span> <br/>
-					Secret sequence: <span id="secret_seq"></span>
-					<br/>	
+				<div id="attempts_list">
 				</div>
 			</div>	
 		</section>
 		
-		
 		<section id="rules" style="display: none">
 			<div id="rules_istr">
-				RULES
+				The aim of the game is to guess a secret sequence of 4 numbers (between 1 and 6, incluse). <br/>
+				<br/>
+				Trying a sequence, the computer will response using two symbols: <br/>
+				<br/>
+				<b>+</b> for any number right in right position in the sequence <br/>
+				<br/>
+				<b>-</b> for any number right in wrong position in the sequence <br/>
+				<br/>
+				<b>++++</b> = YOU WIN!!
 			</div>
 		</section>
 		
@@ -118,6 +121,9 @@
 	
 	</div>
 	<div id="general_inf">
+		<div id="game_inf" style="display: none">
+			Game id: <span id="game_id"></span>
+		</div>
 		<div id="user_inf" style="display: none"></div>
 	</div>
 	
@@ -128,7 +134,26 @@
 	</footer>
 	
 	<script id='template_user_inf' type="application/x-tmpl-mustache">
-      		You play {{n_games}} games and your average is {{avg}}
+      	You play {{n_games}} games and your average is {{avg}}
+    </script>
+    
+    <script id='template_attempts' type="application/x-tmpl-mustache">
+		<table>
+        <thead>
+            <th>Number</th>
+            <th>Move</th>
+			<th>Result</th>
+        </thead>
+        <tbody>
+        {{#items}}
+            <tr>
+                <td>{{num}}</td>
+                <td>{{attempt}}</td>
+				<td>{{result}}</td>
+            </tr>
+        {{/items}}
+        </tbody>
+    </table>
     </script>
 	
 	<script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
@@ -137,6 +162,7 @@
 	<script type="text/javascript" src="/js/login_register.js"></script>
 	<script type="text/javascript" src="/js/navigate.js"></script>
 	<script type="text/javascript" src="/js/game.js"></script>
+	<script type="text/javascript" src="/js/moves_view.js"></script>
 
 </body>
 </html>

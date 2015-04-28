@@ -152,5 +152,5 @@ function on_register_success(data) {
 }
 
 function on_error(data) {
-	$("#login_result").text(JSON.stringify(data.responseJSON));
+	alert(JSON.stringify(data.responseJSON));
 }

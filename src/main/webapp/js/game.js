@@ -1,4 +1,6 @@
 var cont_attempts;
+var attempt;
+var game;
 
 $(document).ready(function() {
 	$("#new_game_button").click(on_new_game);
@@ -20,12 +22,17 @@ function on_new_game_success(data) {
 	cont_attempts = 0;
 	$("#start_new_game").hide();
 	$("#game_id").text(data.game_id);
-	$("#secret_seq").text(data.sequence);
+	$("#attempts_list").text("");
+	$("#game_inf").show("slide", { direction: "left" }, 1000);
 	$("#play_game").show();
+	game = new Game();
+	var moves_view = new GameMovesView("#template_attempts", "#attempts_list");
+	game.add_observer(moves_view);
 }
 
 function on_move() {
 	cont_attempts = cont_attempts + 1;
+	attempt = $("#attempt").val();
 	var cont = cont_attempts.toString();
 	$.ajax({
 		url: '/move',
@@ -34,7 +41,7 @@ function on_move() {
 		error: on_error,
 		data: {
 			game_id: $("#game_id").text(),
-			attempt: $("#attempt").val(),
+			attempt: attempt,
 			att_number: cont,
 		},
 	});
@@ -42,18 +49,24 @@ function on_move() {
 }
 
 function on_move_success(data) {
-	$("#inf_gen").text("Attempt number: " + cont_attempts);
-	$("#attempt_result").text(data.result);
-	if (data.result == "++++") {
-		$("#abandon").hide();
-		$("#spinner_end_game").show();
-		$("#inf_gen").text("WELL DONE! YOU WIN!");
-		window.setTimeout(function() {
-			$("#play_game").hide();
-			$("#try_sequence")[0].reset();
-			$("#start_new_game").show("slide", { direction: "down" }, 1500);
-			template_user_inf(data.num_games, data.average);
-		}, 3000);
+	$("#try_sequence")[0].reset();
+	if (data.result == "invalid_try") {
+		alert("Not valid sequence!");
+		cont_attempts = cont_attempts - 1;
+	} else {
+		game.on_attempt(cont_attempts, attempt, data.result);
+		if (data.result == "++++") {
+			$("#abandon").hide();
+			$("#spinner_end_game").show();
+			$("#inf_gen").text("WELL DONE! YOU WIN!");
+			window.setTimeout(function() {
+				$("#play_game").hide();
+				$("#game_inf").hide("slide", { direction: "left" }, 1000);
+				$("#try_sequence")[0].reset();
+				$("#start_new_game").show("slide", { direction: "down" }, 1500);
+				template_user_inf(data.num_games, data.average);
+			}, 3000);
+		}
 	}
 }
 
@@ -83,11 +96,12 @@ function on_abandon_confirm() {
 
 function on_abandon_success(data) {
 	$("#play_game").hide();
+	$("#game_inf").hide("slide", { direction: "left" }, 1000);
 	$("#try_sequence")[0].reset();
 	$("#start_new_game").show("slide", { direction: "down" }, 1000);
 	template_user_inf(data.num_games, data.average);
 }
 
 function on_error(data) {
-	$("#login_result").text(JSON.stringify(data.responseJSON));
+	alert(JSON.stringify(data.responseJSON));
 }
