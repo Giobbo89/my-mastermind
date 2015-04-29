@@ -186,7 +186,7 @@ h3 {
     margin-top: -20px;
 }
 
-#game_inf {
+#game_inf, #logout {
 	float: left;
 }
 

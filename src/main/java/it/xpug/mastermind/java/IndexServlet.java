@@ -41,6 +41,9 @@ public class IndexServlet extends HttpServlet {
 		if (uri.equals("/check_log")) {
 			log_controller.check_log();
 		}
+		if (uri.equals("/logout")) {
+			log_controller.logout();
+		}
 		if (uri.equals("/new_game")) {
 			game_controller.new_game();
 		}

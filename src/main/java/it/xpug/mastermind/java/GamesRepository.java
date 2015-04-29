@@ -76,7 +76,6 @@ public class GamesRepository {
 	}
 	
 	public ListOfRows getAllUserGames(String nickname) {
-		System.out.println("eseguo il metodo");
 		String sql = "SELECT * FROM games WHERE user_nickname = ? ORDER BY start_date";
 		ListOfRows result = database.select(sql, nickname);
 		return result;	

@@ -1,3 +1,5 @@
+var session_id;
+
 $(document).ready(function() {
 	$("#register").submit(on_register);
 	$("#login").submit(on_login);
@@ -33,6 +35,7 @@ function hide_login_register() {
 		window.setTimeout(function() {
 			$("#game").show("slide", { direction: "down" }, 2000);
 			$("#table_menu").show("slide", { direction: "left" }, 2000);
+			$("#logout").show("slide", { direction: "left" }, 2000);
 			$("#user_inf").show("slide", { direction: "right" }, 2000);
 		}, 1100);
 }
@@ -65,6 +68,34 @@ function on_login() {
 		},
 	});
 	return false;
+}
+
+function on_logout() {
+	document.cookie = "session_id = '" + session_id + "'; expires = Sun, 03 Dec 1989 00:00:00 UTC"; 
+	$.ajax({
+		url: '/logout',
+		method: 'post',
+		success: on_logout_success,
+		data: {
+			session_id: session_id,
+		},
+	});
+}
+
+function on_logout_success(data) {
+	$("#game").hide("slide", { direction: "up" }, 1000);
+	$("#rules").hide("slide", { direction: "up" }, 1000);
+	$("#ranking").hide("slide", { direction: "up" }, 1000);
+	$("#table_menu").hide("slide", { direction: "left" }, 1000);
+	$("#logout").hide("slide", { direction: "left" }, 1000);
+	$("#user_inf").hide("slide", { direction: "right" }, 1000);
+	$("#welcome").hide("slide", { direction: "right" }, 1500);
+	$("#welcome").text("Welcome!");
+	$("#welcome").show("slide", { direction: "right" }, 1500);
+	window.setTimeout(function() {
+		$("#form_login").show("slide", { direction: "left" }, 2000);
+		$("#form_register").show("slide", { direction: "right" }, 2000);
+	}, 1100);
 }
 
 function check_log() {
@@ -102,6 +133,8 @@ function on_login_success(data) {
 		$("#welcome").text("Welcome " + result + "!");
 		$("#welcome").show("slide", { direction: "right" }, 1500);
 		$("#login")[0].reset();
+		$("#register")[0].reset();
+		session_id = data.session_id;
 		template_user_inf(data.num_games, data.average);
 		hide_login_register();
 	}
@@ -148,6 +181,7 @@ function on_register_success(data) {
 		$("#register_result").css("color", "#000000");
 		$("#register_result").text("Well done! Now you can login");
 		$("#register")[0].reset();
+		$("#login")[0].reset();
 	}
 }
 

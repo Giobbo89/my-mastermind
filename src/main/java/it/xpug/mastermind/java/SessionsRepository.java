@@ -35,5 +35,10 @@ public class SessionsRepository {
 		return session;
 		} catch(IndexOutOfBoundsException e) { return null; }
 	}
+	
+	public void deleteSession(String session_id) {
+		String sql = "DELETE FROM sessions WHERE session_id = ?";
+		database.execute(sql, session_id);
+	}
 
 }

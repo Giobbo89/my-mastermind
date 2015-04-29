@@ -38,13 +38,13 @@ public class LoginController extends Controller{
 		}
 		// se supero tutti i controlli, eseguo il login dell'utente e creo una nuova sessione per quell'utente
 		else {
+			Session session = sessions_rep.createNewSession(nickname);
 			int num_games = this.users_rep.getNumberGames(nickname);
 			float average = this.users_rep.getAverage(nickname);
-			String[] names = {"result","num_games", "average"};
-			String[] values = {nickname, String.valueOf(num_games), String.valueOf(average)};
+			String[] names = {"result","num_games", "average", "session_id"};
+			String[] values = {nickname, String.valueOf(num_games), String.valueOf(average), session.getSessionId()};
 			writeBody(toJson(names, values));
-			Session session = sessions_rep.createNewSession(nickname);
-			response.addCookie(new Cookie("id_session", session.getSessionId()));
+			response.addCookie(new Cookie("session_id", session.getSessionId()));
 		}		
 	}
 	
@@ -59,13 +59,18 @@ public class LoginController extends Controller{
 					String nickname = session.getNickname();
 					int num_games = this.users_rep.getNumberGames(nickname);
 					float average = this.users_rep.getAverage(nickname);
-					String[] names = {"result","num_games", "average"};
-					String[] values = {nickname, String.valueOf(num_games), String.valueOf(average)};
+					String[] names = {"result","num_games", "average", "session_id"};
+					String[] values = {nickname, String.valueOf(num_games), String.valueOf(average), session.getSessionId()};
 					writeBody(toJson(names, values));
 					return;
 				}
 			}
 		} catch (NullPointerException e) { }
+	}
+	
+	public void logout() throws IOException{
+		sessions_rep.deleteSession(request.getParameter("session_id"));
+		writeBody(toJson("result", "ok"));
 	}
 	
 }

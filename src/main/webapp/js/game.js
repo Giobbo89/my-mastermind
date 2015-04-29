@@ -23,7 +23,10 @@ function on_new_game_success(data) {
 	$("#start_new_game").hide();
 	$("#game_id").text(data.game_id);
 	$("#attempts_table_div").text("");
-	$("#game_inf").show("slide", { direction: "left" }, 1000);
+	$("#logout").hide("slide", { direction: "left" }, 1000);
+	window.setTimeout(function() {
+		$("#game_inf").show("slide", { direction: "left" }, 1000);
+	}, 1100);
 	$("#play_game").show();
 	game = new Game();
 	var moves_view = new GameMovesView("#template_attempts", "#attempts_table_div");
@@ -62,6 +65,9 @@ function on_move_success(data) {
 			window.setTimeout(function() {
 				$("#play_game").hide();
 				$("#game_inf").hide("slide", { direction: "left" }, 1000);
+				window.setTimeout(function() {
+					$("#logout").show("slide", { direction: "left" }, 1000);
+				}, 1100);
 				$("#try_sequence")[0].reset();
 				$("#start_new_game").show("slide", { direction: "down" }, 1500);
 				template_user_inf(data.num_games, data.average);
@@ -97,6 +103,9 @@ function on_abandon_confirm() {
 function on_abandon_success(data) {
 	$("#play_game").hide();
 	$("#game_inf").hide("slide", { direction: "left" }, 1000);
+	window.setTimeout(function() {
+		$("#logout").show("slide", { direction: "left" }, 1000);
+	}, 1100);
 	$("#try_sequence")[0].reset();
 	$("#start_new_game").show("slide", { direction: "down" }, 1000);
 	template_user_inf(data.num_games, data.average);
