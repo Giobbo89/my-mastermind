@@ -24,9 +24,10 @@ public class IndexServlet extends HttpServlet {
 		GamesRepository games_rep = new GamesRepository(database);
 		AttemptsRepository attempts_rep = new AttemptsRepository(database);
 		
-		GameController game_controller = new GameController(request, response, users_rep, sessions_rep, games_rep, attempts_rep);
 		RegisterController reg_controller = new RegisterController(request, response, users_rep);
 		LoginController log_controller = new LoginController(request, response, users_rep, sessions_rep);
+		GameController game_controller = new GameController(request, response, users_rep, sessions_rep, games_rep, attempts_rep);
+		RankingController ranking_controller = new RankingController(request, response, users_rep, games_rep);
 		
 		// prendo l'uri della richiesta ed eseguo l'operazione ad esso associata 
 		String uri = request.getRequestURI();
@@ -48,6 +49,9 @@ public class IndexServlet extends HttpServlet {
 		}
 		if (uri.equalsIgnoreCase("/abandon")) {
 			game_controller.abandon();
+		}
+		if (uri.equalsIgnoreCase("/load_ranking")) {
+			ranking_controller.load();
 		}
 	}
 }

@@ -62,6 +62,12 @@ public class UsersRepository {
 		return average;
 	}
 	
+	public ListOfRows getAllUsersByAverage() {
+		String sql = "SELECT * FROM users ORDER BY average";
+		ListOfRows result = database.select(sql);
+		return result;
+	}
+	
 	// metodo che permette di verificare se il nickname passato come argomento esiste nel database
 	public boolean nicknameExists(String nickname) {
 		String sql = "SELECT * FROM users WHERE nickname = ?";

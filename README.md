@@ -1,7 +1,9 @@
 #MY MASTERMIND
 
-- Aggiunto (e testato, funzionante) il template per la tabella dei tentativi fatti durante una partita
+- Aggiunta tabella per il ranking dei vari utenti
+- Cominciato a migliorare l'aspetto delle tabelle create tramite template
 
 ## Cose da fare
-- Se possibile, migliorare un pò l'aspetto della tabella dei tentativi
-- Fare il template per la tabella del ranking
+- Migliorare ulteriormente l'aspetto delle tabelle tentativi e ranking
+- Aggiungere link sui vari nome utente per vedere lo storico partite
+- Aggiungere tasto per il logout

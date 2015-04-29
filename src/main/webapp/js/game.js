@@ -22,11 +22,11 @@ function on_new_game_success(data) {
 	cont_attempts = 0;
 	$("#start_new_game").hide();
 	$("#game_id").text(data.game_id);
-	$("#attempts_list").text("");
+	$("#attempts_table_div").text("");
 	$("#game_inf").show("slide", { direction: "left" }, 1000);
 	$("#play_game").show();
 	game = new Game();
-	var moves_view = new GameMovesView("#template_attempts", "#attempts_list");
+	var moves_view = new GameMovesView("#template_attempts", "#attempts_table_div");
 	game.add_observer(moves_view);
 }
 

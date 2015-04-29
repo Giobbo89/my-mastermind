@@ -94,7 +94,7 @@
 					<button type="button" id="abandon">Abandon</button>
 					<img id="spinner_end_game" alt="" src="/images/spinner.gif" style="display: none" />
 				</div>
-				<div id="attempts_list">
+				<div id="attempts_table_div">
 				</div>
 			</div>	
 		</section>
@@ -115,7 +115,9 @@
 		
 		<section id="ranking" style="display: none">
 			<div id="ranking_istr">
-				RANKING
+				<img alt="" id="spinner_ranking" src="/images/spinner.gif">
+				<div id="ranking_table_div">
+				</div>
 			</div>
 		</section>
 	
@@ -138,23 +140,40 @@
     </script>
     
     <script id='template_attempts' type="application/x-tmpl-mustache">
-		<table>
-        <thead>
-            <th>Number</th>
-            <th>Move</th>
-			<th>Result</th>
-        </thead>
-        <tbody>
-        {{#items}}
+		<table id="attempts_table">
+        	<tr>
+            	<th>Number</th>
+            	<th>Move</th>
+				<th>Result</th>
+        	</tr>
+        	{{ #items }}
             <tr>
-                <td>{{num}}</td>
-                <td>{{attempt}}</td>
-				<td>{{result}}</td>
+                <td>{{ num }}</td>
+                <td>{{ attempt }}</td>
+				<td>{{ result }}</td>
             </tr>
-        {{/items}}
-        </tbody>
-    </table>
+        	{{ /items }}
+   		</table>
     </script>
+    
+    <script id="template_ranking" type="application/x-tmpl-mustache">
+		<table id="ranking_table">
+			<tr>
+				<th class="td_ranking">#</th>
+				<th class="td_ranking">User</th>
+				<th class="td_ranking">Games</th>
+				<th class="td_ranking">Average Score</th>
+			</tr>
+			{{ #users }}
+			<tr>
+				<td class="td_ranking">{{ position }}</td>
+				<td class="td_ranking">{{ nickname }}</td>
+				<td class="td_ranking">{{ num_games }}</td>
+				<td class="td_ranking">{{ average }}</td>
+			</tr>
+			{{ /users }}
+		</table>
+	</script>
 	
 	<script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="/js/lib/jquery-ui.js"></script>
@@ -163,6 +182,7 @@
 	<script type="text/javascript" src="/js/navigate.js"></script>
 	<script type="text/javascript" src="/js/game.js"></script>
 	<script type="text/javascript" src="/js/moves_view.js"></script>
+	<script type="text/javascript" src="/js/ranking_view.js"></script>
 
 </body>
 </html>

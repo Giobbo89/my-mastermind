@@ -139,13 +139,17 @@ h3 {
 	margin-top: 30px;
 }
 
-#attempts_list {
+#attempts_table_div {
 	float: right;
 	margin-top: -50px;
 	margin-right: 20px;
-	table-layout: fixed;
 	width: 300px;
+}
+
+#ranking_table, .td_ranking {
+	border: 1px solid black;
 	text-align: center;
+	border-collapse: collapse;
 }
 
 #rules {

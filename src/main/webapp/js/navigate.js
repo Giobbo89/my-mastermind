@@ -24,6 +24,7 @@ function go_to_ranking() {
 		$("#rules").hide("slide", { direction: "up" }, 1000);
 		window.setTimeout(function() {
 			$("#ranking").show("slide", { direction: "down" }, 2000);
+			load_ranking();
 		}, 1100);
 	}
 }

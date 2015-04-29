@@ -101,27 +101,30 @@ public class GameController extends Controller{
 	
 	// metodo privato che confronta i tentativi con la sequenza segreta
 	private String compareSequence(String secret_seq, String attempt) {
-		Boolean check[] = {false, false, false, false};
+		Boolean check_att[] = {false, false, false, false};
+		Boolean check_sec[] = {false, false, false, false};
 		String result = "";
 		// controllo se vi sono numeri esatti in posizione esatta...
 		for (int i=0; i<4; i++) {
 			if (attempt.charAt(i) == secret_seq.charAt(i)) {
 				// ...e nel caso aggiorno la stringa risultato e l'array boolean utilizzato nell'algoritmo
 				result = result + "+";
-				check[i] = true;
+				check_att[i] = true;
+				check_sec[i] = true;
 			}
 		}
 		// controllo se vi sono numeri esatti in posizione sbagliata
 		for (int i=0; i<4; i++) {
 			// se il numero i non era un numero esatto in posizione esatta...
-			if (check[i] == false) {
+			if (check_att[i] == false) {
 				// ...lo confronto con tutti i numeri della sequenza segreta...
 				for (int j=0; j<4; j++) {
-					if (check[j] == false) {
+					if (check_sec[j] == false) {
 						// ...e se c'è uno uguale, aggiorno la stringa risultato e l'array boolean
 						if (attempt.charAt(i) == secret_seq.charAt(j)) {
 							result = result + "-";
-							check[j] = true;
+							check_att[i] = true;
+							check_sec[j] = true;
 							break;
 						}
 					}
