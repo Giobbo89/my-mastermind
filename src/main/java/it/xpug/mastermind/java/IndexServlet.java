@@ -51,7 +51,10 @@ public class IndexServlet extends HttpServlet {
 			game_controller.abandon();
 		}
 		if (uri.equalsIgnoreCase("/load_ranking")) {
-			ranking_controller.load();
+			ranking_controller.load_ranking();
+		}
+		if (uri.equalsIgnoreCase("/user_games")) {
+			ranking_controller.user_games();
 		}
 	}
 }

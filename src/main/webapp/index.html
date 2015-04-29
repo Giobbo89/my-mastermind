@@ -167,12 +167,35 @@
 			{{ #users }}
 			<tr>
 				<td class="td_ranking">{{ position }}</td>
-				<td class="td_ranking">{{ nickname }}</td>
+				<td class="td_ranking"><a href='javascript:on_user_games("{{ nickname }}")'>{{ nickname }}</a></td>
 				<td class="td_ranking">{{ num_games }}</td>
 				<td class="td_ranking">{{ average }}</td>
 			</tr>
 			{{ /users }}
 		</table>
+	</script>
+	
+	<script id="template_user_games" type="application/x-tmpl-mustache">
+		<table id="user_games_table">
+			<tr>
+				<th>#</th>
+				<th>Game Id</th>
+				<th>Started</th>
+				<th>Finished</th>
+				<th>Points</th>
+			</tr>
+			{{ #games }}
+			<tr>
+				<td>{{ number }}</td>
+				<td>{{ game_id }}</td>
+				<td>{{ start_date }}</td>
+				<td>{{ finish_date }}</td>
+				<td>{{ points }}</td>
+			</tr>
+			{{ /games }}
+		</table>
+		
+		<button type="button" id="back_to_ranking">Back</button>		
 	</script>
 	
 	<script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>

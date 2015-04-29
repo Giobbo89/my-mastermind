@@ -75,6 +75,13 @@ public class GamesRepository {
 		return total;
 	}
 	
+	public ListOfRows getAllUserGames(String nickname) {
+		System.out.println("eseguo il metodo");
+		String sql = "SELECT * FROM games WHERE user_nickname = ? ORDER BY start_date";
+		ListOfRows result = database.select(sql, nickname);
+		return result;	
+	}
+	
 	// metodo che permette di specificare data e ora di conclusione della partita il cui id è dato come parametro 
 	public void setGameFinishDate(String game_id) {
 		Timestamp finish_date = new Timestamp(new Date().getTime());
@@ -86,6 +93,11 @@ public class GamesRepository {
 	public void setGamePoints(String game_id, int points) {
 		String sql = "UPDATE games SET points = ? WHERE game_id = ?";
 		database.execute(sql, points, game_id);
+	}
+	
+	public void deleteGamesNotFinished(String nickname) {
+		String sql = "DELETE FROM games WHERE user_nickname = ? AND finish_date IS NULL";
+		database.execute(sql, nickname);
 	}
 	
 }
