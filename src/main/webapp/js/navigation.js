@@ -1,4 +1,8 @@
-function go_to_main() {
+// FILE .js CONTENENTE FUNZIONI RELATIVE ALLA NAVIGAZIONE TRA LE VARIE SEZIONI DELL'APPLICAZIONE 
+
+// Funzione che permette di visualizzare la sezione relativa a una nuova partita
+
+function go_to_game() {
 	if ($("#game").is(":hidden")) {
 		$("#rules").hide("slide", { direction: "up" }, 1000);
 		$("#ranking").hide("slide", { direction: "up" }, 1000);
@@ -7,6 +11,8 @@ function go_to_main() {
 		}, 1100);
 	}
 }
+
+// Funzione che permette di visualizzare la sezione relativa alle regole
 
 function go_to_rules() {
 	if ($("#rules").is(":hidden")) {
@@ -17,6 +23,8 @@ function go_to_rules() {
 		}, 1100);
 	}
 }
+
+// Funzione che permette di visualizzare la sezione relativa al ranking
 
 function go_to_ranking() {
 	if ($("#ranking").is(":hidden")) {

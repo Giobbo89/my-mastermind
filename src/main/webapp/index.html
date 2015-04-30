@@ -6,20 +6,19 @@
 	<link rel="stylesheet" href="/css/style.css" type="text/css" media="screen">
 </head>
 
-<!-- Body della mia pagina principale -->
+<!-- Body della pagina -->
 <body>
 
 	<!-- Header che contiene il titolo della pagina -->
 	<header>
 		<h1 style="color: white">Master</h1><h2 style="color: white">Mind</h2>
 	</header>
-	<!-- QUI VA INSERITO IL MENU DI NAVIGAZIONE -->
 	
 	<!-- Div che contiene il menu -->
 	<div id="menu">
 		<table id="table_menu" style="display: none">
 			<tr>
-				<th><a href="javascript:go_to_main()">Main</a></th>
+				<th><a href="javascript:go_to_game()">Game</a></th>
 				<th><a href="javascript:go_to_rules()">Rules</a></th>
 				<th><a href="javascript:go_to_ranking()">Ranking</a></th>
 				<th>Documentation</th>
@@ -31,7 +30,9 @@
 	<!-- Div che contiene il login e il register -->
 	<div id="main">
 		
-		<!-- Form per il login -->
+		<!-- SEZIONI NOT LOGGED -->
+		
+		<!-- Sezione con form per il login -->
 		<section id="form_login">
 			<h3 id="login_label">Login</h3>
 			
@@ -48,7 +49,7 @@
 			</form>
 		</section>
 		
-		<!-- Form per la registrazione -->
+		<!-- Sezione con form per la registrazione -->
 		<section id="form_register">
 			<h3 id="register_label">Register</h3>
 			
@@ -71,7 +72,13 @@
 			</form>
 		</section>
 		
+		<!-- FINE SEZIONI NOT LOGGED -->
+		
+		<!-- SEZIONI LOGGED -->
+		
+		<!-- Sezione che contiene gli elementi per creare e giocare una nuova partita -->
 		<section id="game" style="display: none">
+		
 			<div id="start_new_game">
 				Hello! To start a new game, press the button below. <br/>
 				<br/>
@@ -83,9 +90,10 @@
 			
 			<div id="play_game" style="display: none">
 				<div id="form_to_guess">
-					<span id="inf_gen">
-						The secrete sequence was created! <br/>
+					<span id="game_message">
+						The secrete sequence was created!
 					</span>
+					<br/>
 					<form id="try_sequence">
 						<input type="text" autocomplete="off" name="attempt" value="" id="attempt" class="game_input" maxlength="4"/>
 						<br/>
@@ -94,11 +102,13 @@
 					<button type="button" id="abandon">Abandon</button>
 					<img id="spinner_end_game" alt="" src="/images/spinner.gif" style="display: none" />
 				</div>
+				<!-- Div in cui viene visualizzata la tabella dei tentativi -->
 				<div id="attempts_table_div">
 				</div>
 			</div>	
 		</section>
 		
+		<!-- Sezione che contiene le regole del gioco -->
 		<section id="rules" style="display: none">
 			<div id="rules_istr">
 				The aim of the game is to guess a secret sequence of 4 numbers (between 1 and 6, incluse). <br/>
@@ -113,22 +123,28 @@
 			</div>
 		</section>
 		
+		<!-- Sezione che contiene il ranking dei giocatori -->
 		<section id="ranking" style="display: none">
 			<div id="ranking_istr">
 				<img alt="" id="spinner_ranking" src="/images/spinner.gif">
+				<!-- In questo div vengono caricate le tabelle del ranking, delle partite e delle mosse di un utente -->
 				<div id="ranking_table_div">
 				</div>
 			</div>
 		</section>
 	
 	</div>
-	<div id="general_inf">
+	
+	<!-- Sezione in cui si visualizza o il game id o il pulsante di logout  -->
+	<section id="general_inf">
 		<div id="game_inf" style="display: none">
 			Game id: <span id="game_id"></span>
 		</div>
 		<div id="logout" style="display: none"><a href="javascript:on_logout()">Logout</a></div>
 		<div id="user_inf" style="display: none"></div>
-	</div>
+	</section>
+	
+	<!-- FINE SEZIONI LOGGED -->
 	
 	<!-- Footer -->
 	<footer>
@@ -136,10 +152,14 @@
 		<div id="exam_session">Appello: XXXXXXXX</div>
 	</footer>
 	
+	<!-- SCRIPT CONTENENTI I VARI TEMPLATE USATI -->
+	
+	<!-- Template per visualizzare numero di partite e media punteggio di un utente loggato -->
 	<script id='template_user_inf' type="application/x-tmpl-mustache">
       	You play {{n_games}} games and your average score is {{avg}}
     </script>
     
+    <!-- Template per visualizzare i tentativi fatti durante una partita -->
     <script id='template_attempts' type="application/x-tmpl-mustache">
 		<table id="attempts_table">
         	<tr>
@@ -157,6 +177,7 @@
    		</table>
     </script>
     
+    <!-- Template per visualizzare il ranking globale dei giocatori iscritti -->
     <script id="template_ranking" type="application/x-tmpl-mustache">
 		<table id="ranking_table">
 			<tr>
@@ -176,6 +197,7 @@
 		</table>
 	</script>
 	
+	<!-- Template per visualizzare lo storico delle partite di un utente -->
 	<script id="template_user_games" type="application/x-tmpl-mustache">
 		<table id="user_games_table">
 			<tr>
@@ -199,6 +221,7 @@
 		<button type="button" class="back_to_ranking" onclick="javascript:on_load_ranking()">Back</button>		
 	</script>
 	
+	<!-- Template per visualizzare i tentativi fatti in una partita fatta -->
 	<script id='template_game_attempts' type="application/x-tmpl-mustache">
 		<table id="game_attempts_table">
         	<tr>
@@ -222,10 +245,9 @@
 	<script type="text/javascript" src="/js/lib/jquery-ui.js"></script>
 	<script type="text/javascript" src="/js/lib/mustache.js"></script>
 	<script type="text/javascript" src="/js/login_register.js"></script>
-	<script type="text/javascript" src="/js/navigate.js"></script>
+	<script type="text/javascript" src="/js/navigation.js"></script>
 	<script type="text/javascript" src="/js/game.js"></script>
-	<script type="text/javascript" src="/js/moves_view.js"></script>
-	<script type="text/javascript" src="/js/ranking_view.js"></script>
+	<script type="text/javascript" src="/js/ranking.js"></script>
 
 </body>
 </html>
