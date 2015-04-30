@@ -23,7 +23,7 @@ public class GamesRepository {
 		String game_id = String.valueOf(id);
 		// prendo data e ora attuale per poter specificarle come inizio della partita
 		Timestamp start_date = new Timestamp(new Date().getTime());
-		String sql = "INSERT INTO games (game_id, user_nickname, secret_seq, points, start_date, finish_date) "
+		String sql = "INSERT INTO games (game_id, user_nickname, secret_seq, score, start_date, finish_date) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		String sequence = secretSeqMaker();
 		database.execute(sql, game_id, nickname, sequence, 0, start_date, null);
@@ -69,7 +69,7 @@ public class GamesRepository {
 		int total= 0; int n = 0;
 		for (int i=0; i<rows.size(); i++) {
 			game = (HashMap<String, Object>) rows.get(i);
-			n = (int) game.get("points");
+			n = (int) game.get("score");
 			total = total + n;
 		}
 		return total;
@@ -90,7 +90,7 @@ public class GamesRepository {
 	
 	// metodo che permette di specificare il punteggio della partita il cui id è dato come parametro
 	public void setGamePoints(String game_id, int points) {
-		String sql = "UPDATE games SET points = ? WHERE game_id = ?";
+		String sql = "UPDATE games SET score = ? WHERE game_id = ?";
 		database.execute(sql, points, game_id);
 	}
 	

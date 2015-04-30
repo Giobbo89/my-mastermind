@@ -146,10 +146,22 @@ h3 {
 	width: 300px;
 }
 
-#ranking_table, .td_ranking {
+#ranking_table, #user_games_table {
+	width: 600px;
+	margin-top: -50px;
 	border: 1px solid black;
 	text-align: center;
 	border-collapse: collapse;
+}
+
+.td_ranking {
+	border: 1px solid black;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+#back_to_ranking {
+	margin-top: 15px;
 }
 
 #rules {

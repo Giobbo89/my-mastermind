@@ -137,7 +137,7 @@
 	</footer>
 	
 	<script id='template_user_inf' type="application/x-tmpl-mustache">
-      	You play {{n_games}} games and your average is {{avg}}
+      	You play {{n_games}} games and your average score is {{avg}}
     </script>
     
     <script id='template_attempts' type="application/x-tmpl-mustache">
@@ -179,24 +179,24 @@
 	<script id="template_user_games" type="application/x-tmpl-mustache">
 		<table id="user_games_table">
 			<tr>
-				<th>#</th>
-				<th>Game Id</th>
-				<th>Started</th>
-				<th>Finished</th>
-				<th>Points</th>
+				<th class="td_ranking">#</th>
+				<th class="td_ranking">Game Id</th>
+				<th class="td_ranking">Started</th>
+				<th class="td_ranking">Finished</th>
+				<th class="td_ranking">Score</th>
 			</tr>
 			{{ #games }}
 			<tr>
-				<td>{{ number }}</td>
-				<td>{{ game_id }}</td>
-				<td>{{ start_date }}</td>
-				<td>{{ finish_date }}</td>
-				<td>{{ points }}</td>
+				<td class="td_ranking">{{ number }}</td>
+				<td class="td_ranking">{{ game_id }}</td>
+				<td class="td_ranking">{{ start_date }}</td>
+				<td class="td_ranking">{{ finish_date }}</td>
+				<td class="td_ranking">{{ score }}</td>
 			</tr>
 			{{ /games }}
 		</table>
-		
-		<button type="button" id="back_to_ranking">Back</button>		
+		<br/>
+		<button type="button" id="back_to_ranking" onclick="javascript:on_load_ranking()">Back</button>		
 	</script>
 	
 	<script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>

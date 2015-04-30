@@ -67,11 +67,17 @@ public class GameController extends Controller{
 				// ...aggiorno la fine della partita, i punti fatti e la media dell'utente
 				this.games_rep.setGameFinishDate(game_id);
 				this.games_rep.setGamePoints(game_id, att_number);
+				System.out.println("Punti fatti: " + att_number);
 				int total = this.games_rep.getUserTotalPoints(nickname);
+				System.out.println("Totale punti: " + total);
 				this.users_rep.updateGameFinished(nickname, att_number, total);
 				int num_games = this.users_rep.getNumberGames(nickname);
+				System.out.println("Numero partite: " + num_games);
 				float average = this.users_rep.getAverage(nickname);
-				String[] values = {result, String.valueOf(num_games), String.valueOf(average)};
+				System.out.println("Media: " + average);
+				String avg = String.format("%.2f", average);
+				System.out.println("Media: " + avg);
+				String[] values = {result, String.valueOf(num_games), avg};
 				writeBody(toJson(names, values));
 			} else {
 				String[] values = {result, "null", "null"};
@@ -95,6 +101,7 @@ public class GameController extends Controller{
 		this.users_rep.updateGameFinished(nickname, att_number, total);
 		int num_games = this.users_rep.getNumberGames(nickname);
 		float average = this.users_rep.getAverage(nickname);
+		String.format("%.2f", average);
 		String[] values = {result, String.valueOf(num_games), String.valueOf(average)};
 		writeBody(toJson(names, values));
 	}

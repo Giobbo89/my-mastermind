@@ -30,7 +30,7 @@ function loop_h2() {
 }
 
 function hide_login_register() {
-		$("#form_login").hide("slide", 1000);
+		$("#form_login").hide("slide", { direction: "left" }, 1000);
 		$("#form_register").hide("slide", { direction: "right" }, 1000);
 		window.setTimeout(function() {
 			$("#game").show("slide", { direction: "down" }, 2000);
@@ -103,7 +103,6 @@ function check_log() {
 		url: '/check_log',
 		method: 'get',
 		success: on_login_success,
-		error: on_error,
 	});
 	return false;
 }

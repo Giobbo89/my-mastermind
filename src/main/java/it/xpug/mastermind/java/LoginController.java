@@ -1,6 +1,7 @@
 package it.xpug.mastermind.java;
 
 import java.io.*;
+
 import javax.servlet.http.*;
 
 // classe gestisce le operazioni relative al login di un utente
@@ -41,8 +42,9 @@ public class LoginController extends Controller{
 			Session session = sessions_rep.createNewSession(nickname);
 			int num_games = this.users_rep.getNumberGames(nickname);
 			float average = this.users_rep.getAverage(nickname);
+			String avg = String.format("%.2f", average);
 			String[] names = {"result","num_games", "average", "session_id"};
-			String[] values = {nickname, String.valueOf(num_games), String.valueOf(average), session.getSessionId()};
+			String[] values = {nickname, String.valueOf(num_games), avg, session.getSessionId()};
 			writeBody(toJson(names, values));
 			response.addCookie(new Cookie("session_id", session.getSessionId()));
 		}		
@@ -59,8 +61,9 @@ public class LoginController extends Controller{
 					String nickname = session.getNickname();
 					int num_games = this.users_rep.getNumberGames(nickname);
 					float average = this.users_rep.getAverage(nickname);
+					String avg = String.format("%.2f", average);
 					String[] names = {"result","num_games", "average", "session_id"};
-					String[] values = {nickname, String.valueOf(num_games), String.valueOf(average), session.getSessionId()};
+					String[] values = {nickname, String.valueOf(num_games), avg, session.getSessionId()};
 					writeBody(toJson(names, values));
 					return;
 				}

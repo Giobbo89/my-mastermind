@@ -3,6 +3,7 @@ package it.xpug.mastermind.java;
 import it.xpug.generic.db.*;
 import java.io.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.*;
 
@@ -26,7 +27,8 @@ public class RankingController extends Controller{
 			String nickname = (String) all_users.get(i).get("nickname");
 			int num_games = (Integer) all_users.get(i).get("num_games");
 			float average = (float) all_users.get(i).get("average");
-			String[] values = {String.valueOf(i+1), nickname, String.valueOf(num_games), String.valueOf(average)};
+			String avg = String.format("%.2f", average);
+			String[] values = {String.valueOf(i+1), nickname, String.valueOf(num_games), avg};
 			if (i == 0) {
 				ranking = ranking + toJson(names, values);
 			} else {
@@ -44,14 +46,16 @@ public class RankingController extends Controller{
 		String nickname = request.getParameter("nickname");
 		games_rep.deleteGamesNotFinished(nickname);
 		ListOfRows all_games = games_rep.getAllUserGames(nickname);
-		String[] names = {"number", "game_id","start_date", "finish_date", "points"};
+		String[] names = {"number", "game_id","start_date", "finish_date", "score"};
 		String games = "[";
 		for (int i = 0; i < all_games.size(); i++){
 			String game_id = (String) all_games.get(i).get("game_id");
-			Timestamp start = (Timestamp) all_games.get(i).get("start_date");
-			Timestamp finish = (Timestamp) all_games.get(i).get("finish_date");
-			int points = (int) all_games.get(i).get("points");
-			String[] values = {String.valueOf(i+1), game_id, String.valueOf(start), String.valueOf(finish), String.valueOf(points)};
+			Timestamp start_date = (Timestamp) all_games.get(i).get("start_date");
+			Timestamp finish_date = (Timestamp) all_games.get(i).get("finish_date");
+			String start = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(start_date);
+			String finish = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(finish_date);
+			int score = (int) all_games.get(i).get("score");
+			String[] values = {String.valueOf(i+1), game_id, start, finish, String.valueOf(score)};
 			if (i == 0) {
 				games = games + toJson(names, values);
 			} else {
