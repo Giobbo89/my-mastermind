@@ -33,3 +33,22 @@ function on_user_games_success(data) {
 	$("#ranking_table_div").html("");
 	$("#ranking_table_div").html(render);
 }
+
+function on_game_attempts(game_id) {
+	$.ajax({
+		url: '/game_attempts',
+		method: 'post',
+		success: on_game_attempts_success,
+		error: on_error,
+		data: {
+			game_id: game_id,
+		},
+	});
+}
+
+function on_game_attempts_success(data) {
+	var template = $('#template_game_attempts').html();
+	var render = Mustache.render(template, data);
+	$("#ranking_table_div").html("");
+	$("#ranking_table_div").html(render);
+}

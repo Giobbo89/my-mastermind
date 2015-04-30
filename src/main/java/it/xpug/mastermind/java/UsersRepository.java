@@ -90,8 +90,8 @@ public class UsersRepository {
 		if (num_games == 1) {
 			average = (float)(total);
 		} else {
-			System.out.println("Calcolo media: "+ total + " + " + points + " / " + num_games);
-			average = (float)(total + points)/(float)num_games;
+			System.out.println("Calcolo media: "+ total + " / " + num_games);
+			average = (float)(total)/(float)num_games;
 		}
 		String sql3 = "UPDATE users SET average = ? WHERE nickname = ?";
 		database.execute(sql3, average, nickname);

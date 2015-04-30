@@ -27,7 +27,7 @@ public class IndexServlet extends HttpServlet {
 		RegisterController reg_controller = new RegisterController(request, response, users_rep);
 		LoginController log_controller = new LoginController(request, response, users_rep, sessions_rep);
 		GameController game_controller = new GameController(request, response, users_rep, sessions_rep, games_rep, attempts_rep);
-		RankingController ranking_controller = new RankingController(request, response, users_rep, games_rep);
+		RankingController ranking_controller = new RankingController(request, response, users_rep, games_rep, attempts_rep);
 		
 		// prendo l'uri della richiesta ed eseguo l'operazione ad esso associata 
 		String uri = request.getRequestURI();
@@ -58,6 +58,9 @@ public class IndexServlet extends HttpServlet {
 		}
 		if (uri.equalsIgnoreCase("/user_games")) {
 			ranking_controller.user_games();
+		}
+		if (uri.equalsIgnoreCase("/game_attempts")) {
+			ranking_controller.game_attempts();
 		}
 	}
 }

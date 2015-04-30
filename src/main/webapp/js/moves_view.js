@@ -27,7 +27,6 @@ function GameMovesView(template, target) {
 	GameMovesView.prototype.notify = function(game) {
 	  var template = $(this.template).html();
 	  var render = Mustache.render(template, {
-		//da settare
 	    items: game.attempts,
 	  });
 	  $(this.target).html(render);

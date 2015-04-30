@@ -146,7 +146,7 @@ h3 {
 	width: 300px;
 }
 
-#ranking_table, #user_games_table {
+#ranking_table, #user_games_table, #game_attempts_table {
 	width: 600px;
 	margin-top: -50px;
 	border: 1px solid black;
@@ -160,8 +160,13 @@ h3 {
 	border-collapse: collapse;
 }
 
-#back_to_ranking {
+.back_to_ranking {
 	margin-top: 15px;
+}
+
+#win_message {
+	font-size: 30px;
+	font-weight: bold;
 }
 
 #rules {

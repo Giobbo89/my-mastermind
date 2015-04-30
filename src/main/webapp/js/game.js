@@ -71,6 +71,8 @@ function on_move_success(data) {
 				$("#try_sequence")[0].reset();
 				$("#start_new_game").show("slide", { direction: "down" }, 1500);
 				template_user_inf(data.num_games, data.average);
+				$("#spinner_end_game").hide();
+				$("#abandon").show();
 			}, 3000);
 		}
 	}

@@ -87,7 +87,7 @@
 						The secrete sequence was created! <br/>
 					</span>
 					<form id="try_sequence">
-						<input type="text" name="attempt" value="" id="attempt" class="game_input" maxlength="4"/>
+						<input type="text" autocomplete="off" name="attempt" value="" id="attempt" class="game_input" maxlength="4"/>
 						<br/>
 						<input type="submit" value="Try to guess!"/>
 					</form>
@@ -103,13 +103,13 @@
 			<div id="rules_istr">
 				The aim of the game is to guess a secret sequence of 4 numbers (between 1 and 6, incluse). <br/>
 				<br/>
-				Trying a sequence, the computer will response using two symbols: <br/>
+				Trying a sequence, the server will response using two symbols: <br/>
 				<br/>
 				<b>+</b> for any number right in right position in the sequence <br/>
 				<br/>
 				<b>-</b> for any number right in wrong position in the sequence <br/>
 				<br/>
-				<b>++++</b> = YOU WIN!!
+				<span id="win_message">++++ = YOU WIN!!</span>
 			</div>
 		</section>
 		
@@ -188,7 +188,7 @@
 			{{ #games }}
 			<tr>
 				<td class="td_ranking">{{ number }}</td>
-				<td class="td_ranking">{{ game_id }}</td>
+				<td class="td_ranking"><a href='javascript:on_game_attempts("{{ game_id }}")'>{{ game_id }}</td>
 				<td class="td_ranking">{{ start_date }}</td>
 				<td class="td_ranking">{{ finish_date }}</td>
 				<td class="td_ranking">{{ score }}</td>
@@ -196,8 +196,27 @@
 			{{ /games }}
 		</table>
 		<br/>
-		<button type="button" id="back_to_ranking" onclick="javascript:on_load_ranking()">Back</button>		
+		<button type="button" class="back_to_ranking" onclick="javascript:on_load_ranking()">Back</button>		
 	</script>
+	
+	<script id='template_game_attempts' type="application/x-tmpl-mustache">
+		<table id="game_attempts_table">
+        	<tr>
+            	<th class="td_ranking">Number</th>
+            	<th class="td_ranking">Attempt</th>
+				<th class="td_ranking">Result</th>
+        	</tr>
+        	{{ #attempts }}
+            <tr>
+                <td class="td_ranking">{{ num }}</td>
+                <td class="td_ranking">{{ attempt }}</td>
+				<td class="td_ranking">{{ result }}</td>
+            </tr>
+        	{{ /attempts }}
+   		</table>
+		<br/>
+		<button type="button" class="back_to_ranking" onclick="javascript:on_load_ranking()">Back</button>
+    </script>
 	
 	<script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="/js/lib/jquery-ui.js"></script>

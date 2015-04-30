@@ -11,12 +11,14 @@ public class RankingController extends Controller{
 	
 	private UsersRepository users_rep;
 	private GamesRepository games_rep;
+	private AttemptsRepository attempts_rep;
 	
 	public RankingController(HttpServletRequest request, HttpServletResponse response, UsersRepository users_rep, 
-			GamesRepository games_rep) {
+			GamesRepository games_rep, AttemptsRepository attempts_rep) {
 		super(request, response);
 		this.users_rep = users_rep;
 		this.games_rep = games_rep;
+		this.attempts_rep = attempts_rep;
 	}
 	
 	public void load_ranking() throws IOException {
@@ -64,6 +66,29 @@ public class RankingController extends Controller{
 		}
 		games = games + "]";
 		String json = toJson("games", games);
+		json = json.replace("\"[", "[");
+		json = json.replace("]\"", "]");
+		writeBody(json);
+	}
+	
+	public void game_attempts() throws IOException {
+		String game_id = request.getParameter("game_id");
+		ListOfRows all_attempts = attempts_rep.getAllGameAttempts(game_id);
+		String[] names = {"num", "attempt", "result"};
+		String attempts = "[";
+		for (int i = 0; i < all_attempts.size(); i++){
+			int number = (int) all_attempts.get(i).get("att_number");
+			String attempt = (String) all_attempts.get(i).get("attempt");
+			String result = (String) all_attempts.get(i).get("result");
+			String[] values = {String.valueOf(number), attempt, result};
+			if (i == 0) {
+				attempts = attempts + toJson(names, values);
+			} else {
+				attempts = attempts + "," + toJson(names, values);
+			}
+		}
+		attempts = attempts + "]";
+		String json = toJson("attempts", attempts);
 		json = json.replace("\"[", "[");
 		json = json.replace("]\"", "]");
 		writeBody(json);

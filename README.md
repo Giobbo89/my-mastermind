@@ -1,10 +1,9 @@
 #MY MASTERMIND
 
-- Aggiunta funzionalità pulsante back
-- Sistemati formati di date e media punti
+- Aggiunta tabella con tentativi di una partita
+- Sistemato il calcolo della media
 
 ## Cose da fare
-- Aggiungere tabella con tentativi di una partita
-- Sistemare il calcolo della media
 - Creare la documentazione
-- Fare prove multiple per controllare il corretto funzionamento di tutto
+- Sistemare la questione delle mosse durante la partita
+- Aggiungere commenti al codice
