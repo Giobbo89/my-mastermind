@@ -6,7 +6,7 @@ create table attempts (
   att_number integer not null,
   secret_seq varchar(255) not null,
   result varchar(255) not null,
-  primary key (game_id, user_nickname, att_number)
+  PRIMARY KEY (game_id, user_nickname, att_number)
 );
 
 update schema_info set version = 4;

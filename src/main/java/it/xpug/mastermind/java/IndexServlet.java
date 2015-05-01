@@ -5,7 +5,7 @@ import it.xpug.generic.db.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-// servelt dell'applicazione alla quale pervengono tutte le richieste Ajax
+// servlet dell'applicazione alla quale pervengono tutte le richieste Ajax
 
 public class IndexServlet extends HttpServlet {
 

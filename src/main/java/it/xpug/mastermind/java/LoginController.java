@@ -1,7 +1,6 @@
 package it.xpug.mastermind.java;
 
 import java.io.*;
-
 import javax.servlet.http.*;
 
 // classe gestisce le operazioni relative al login di un utente
@@ -58,7 +57,7 @@ public class LoginController extends Controller{
 				Session session = sessions_rep.getSession(cookie.getValue());
 				// se vi è una sessione specificata nel cookie, eseguo il login per quell'utente
 				if (session != null) {
-					String nickname = session.getNickname();
+					String nickname = session.getUserNickname();
 					int num_games = this.users_rep.getNumberGames(nickname);
 					float average = this.users_rep.getAverage(nickname);
 					String avg = String.format("%.2f", average);
@@ -71,9 +70,9 @@ public class LoginController extends Controller{
 		} catch (NullPointerException e) { }
 	}
 	
+	// metodo che viene chiamato quando l'utente vuole eseguire il logout
 	public void logout() throws IOException{
 		sessions_rep.deleteSession(request.getParameter("session_id"));
-		writeBody(toJson("result", "ok"));
 	}
 	
 }

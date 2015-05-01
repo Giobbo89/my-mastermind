@@ -138,7 +138,7 @@ function on_login_success(data) {
 function template_user_inf(num_games, average) {
 	var template = $('#template_user_inf').html();
 	var render = Mustache.render(template, {
-		n_games: num_games,
+		num_games: num_games,
 		avg: average
 	});
 	$("#user_inf").html(render);

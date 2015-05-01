@@ -6,7 +6,8 @@ create table games (
   score integer not null,
   start_date timestamp not null,
   finish_date timestamp,
-  primary key (game_id, user_nickname)
+  PRIMARY KEY (game_id, user_nickname),
+  FOREIGN KEY (user_nickname) REFERENCES users (nickname) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 update schema_info set version = 3;

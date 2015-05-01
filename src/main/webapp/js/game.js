@@ -78,7 +78,7 @@ function on_attempt_success(data) {
 				$("#game_inf").hide("slide", { direction: "left" }, 1000);
 				window.setTimeout(function() {
 					$("#logout").show("slide", { direction: "left" }, 1000);
-					$("#table_menu").show("slide", { direction: "left" }, 2000);
+					$("#table_menu").show("slide", { direction: "left" }, 1500);
 				}, 1100);
 				$("#try_sequence")[0].reset();
 				$("#start_new_game").show("slide", { direction: "down" }, 1500);
@@ -137,6 +137,7 @@ function on_abandon_success(data) {
 	$("#play_game").hide();
 	$("#game_inf").hide("slide", { direction: "left" }, 1000);
 	window.setTimeout(function() {
+		$("#table_menu").show("slide", { direction: "left" }, 1500);
 		$("#logout").show("slide", { direction: "left" }, 1000);
 	}, 1100);
 	$("#try_sequence")[0].reset();

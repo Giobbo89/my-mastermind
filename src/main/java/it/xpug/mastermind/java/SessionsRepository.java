@@ -19,8 +19,8 @@ public class SessionsRepository {
 		int id = 1 + random.nextInt(2147483646);
 		String session_id = String.valueOf(id);
 		Session session = new Session(session_id, nickname);
-		String sql = "INSERT INTO sessions (session_id, nickname) VALUES (?, ?)";
-		database.execute(sql, session.getSessionId(), session.getNickname());
+		String sql = "INSERT INTO sessions (session_id, user_nickname) VALUES (?, ?)";
+		database.execute(sql, session.getSessionId(), session.getUserNickname());
 		return session;
 	}
 
@@ -30,12 +30,13 @@ public class SessionsRepository {
 		String sql = "SELECT * FROM sessions WHERE session_id = ?";
 		ListOfRows rows = database.select(sql, session_id);
 		HashMap<String, Object> result = (HashMap<String, Object>) rows.get(0);
-		String nickname = (String) result.get("nickname");
+		String nickname = (String) result.get("user_nickname");
 		Session session = new Session(session_id, nickname);
 		return session;
 		} catch(IndexOutOfBoundsException e) { return null; }
 	}
 	
+	// metodo che permette di cancellare una sessione che ha l'id specificato tramite argomento
 	public void deleteSession(String session_id) {
 		String sql = "DELETE FROM sessions WHERE session_id = ?";
 		database.execute(sql, session_id);

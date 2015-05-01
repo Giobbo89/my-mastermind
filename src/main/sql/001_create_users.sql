@@ -6,7 +6,7 @@ create table users (
   enc varchar(255) not null,
   num_games integer not null,
   average real not null,
-  primary key (nickname)
+  PRIMARY KEY (nickname)
 );
 
 update schema_info set version = 1;

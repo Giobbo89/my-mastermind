@@ -1,7 +1,6 @@
 package it.xpug.mastermind.java;
 
 import it.xpug.generic.db.*;
-
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -75,6 +74,7 @@ public class GamesRepository {
 		return total;
 	}
 	
+	// metodo che restituisce tutte le partite di un utente
 	public ListOfRows getAllUserGames(String nickname) {
 		String sql = "SELECT * FROM games WHERE user_nickname = ? ORDER BY start_date";
 		ListOfRows result = database.select(sql, nickname);
@@ -94,6 +94,7 @@ public class GamesRepository {
 		database.execute(sql, points, game_id);
 	}
 	
+	// metodo che cancella dal database tutte le partite non concluse (per uscita dalla pagina)
 	public void deleteGamesNotFinished(String nickname) {
 		String sql = "DELETE FROM games WHERE user_nickname = ? AND finish_date IS NULL";
 		database.execute(sql, nickname);

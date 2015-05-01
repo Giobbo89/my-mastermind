@@ -21,6 +21,7 @@ public class AttemptsRepository {
 		database.execute(sql, game_id, nickname, attempt, att_num, secret_seq, result);
 	}
 	
+	// metodo che restituisce tutti i tentativi relativi ad una partita, ordinati dal primo all'ultimo
 	public ListOfRows getAllGameAttempts(String game_id) {
 		String sql = "SELECT * FROM attempts WHERE game_id = ? ORDER BY att_number";
 		ListOfRows result = database.select(sql, game_id);

@@ -2,7 +2,6 @@ package it.xpug.mastermind.java;
 
 import java.security.*;
 import java.util.*;
-
 import it.xpug.generic.db.*;
 
 // classe repository per la gestione della tabella users, in cui vengono salvati i vari utenti che si registrano
@@ -46,6 +45,7 @@ public class UsersRepository {
 		}
 	}
 	
+	// meotdo che restiuisce il numero di partite giocate da un utente il cui nickname è specificato come argomento
 	public int getNumberGames(String nickname) {
 		String sql = "SELECT * FROM users WHERE nickname = ?";
 		ListOfRows result = database.select(sql, nickname);
@@ -54,6 +54,7 @@ public class UsersRepository {
 		return num_games;
 	}
 	
+	// metodo che restituisce il punteggio medio di un utente il cui nickname è specificato come argomento
 	public float getAverage(String nickname) {
 		String sql = "SELECT * FROM users WHERE nickname = ?";
 		ListOfRows result = database.select(sql, nickname);
@@ -62,8 +63,9 @@ public class UsersRepository {
 		return average;
 	}
 	
+	// metodo che restituisce tutti gli utenti che hanno giocato almeno una partita ordinati per punteggio medio
 	public ListOfRows getAllUsersByAverage() {
-		String sql = "SELECT * FROM users ORDER BY average";
+		String sql = "SELECT * FROM users WHERE num_games > 0 ORDER BY average";
 		ListOfRows result = database.select(sql);
 		return result;
 	}
@@ -90,7 +92,6 @@ public class UsersRepository {
 		if (num_games == 1) {
 			average = (float)(total);
 		} else {
-			System.out.println("Calcolo media: "+ total + " / " + num_games);
 			average = (float)(total)/(float)num_games;
 		}
 		String sql3 = "UPDATE users SET average = ? WHERE nickname = ?";
