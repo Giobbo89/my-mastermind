@@ -1,6 +1,7 @@
 package it.xpug.mastermind.java;
 
 import it.xpug.generic.db.*;
+import java.sql.Timestamp;
 import java.util.*;
 
 // classe repository per la gestione della tabella sessions, in cui vengono salvate le varie sessioni relative agli utenti
@@ -19,8 +20,9 @@ public class SessionsRepository {
 		int id = 1 + random.nextInt(2147483646);
 		String session_id = String.valueOf(id);
 		Session session = new Session(session_id, nickname);
-		String sql = "INSERT INTO sessions (session_id, user_nickname) VALUES (?, ?)";
-		database.execute(sql, session.getSessionId(), session.getUserNickname());
+		Timestamp start_date = new Timestamp(new Date().getTime());
+		String sql = "INSERT INTO sessions (session_id, user_nickname, start_date) VALUES (?, ?, ?)";
+		database.execute(sql, session.getSessionId(), session.getUserNickname(), start_date);
 		return session;
 	}
 
@@ -41,5 +43,9 @@ public class SessionsRepository {
 		String sql = "DELETE FROM sessions WHERE session_id = ?";
 		database.execute(sql, session_id);
 	}
-
+	
+	public void deleteOldSessions() {
+		String sql = "DELETE FROM sessions WHERE start_date < (NOW() - INTERVAL '3 DAYS')";
+		database.execute(sql);
+	}
 }

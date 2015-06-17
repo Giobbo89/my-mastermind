@@ -21,6 +21,14 @@ header {
     margin-right: auto;
 }
 
+a:link, a:visited {
+    color: #2759BE;
+}
+
+a:hover {
+	color: #2909FA
+}
+
 table {
 	float: left;
 	text-align: left;

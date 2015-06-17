@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<title>MasterMind</title>
@@ -21,7 +23,7 @@
 				<th><a href="javascript:go_to_game()">Game</a></th>
 				<th><a href="javascript:go_to_rules()">Rules</a></th>
 				<th><a href="javascript:go_to_ranking()">Ranking</a></th>
-				<th>Documentation</th>
+				<th><a href="/documents/documentation.pdf" target="_blank">Documentation</th>
 			</tr>
 		</table>
 		<div id="welcome">Welcome!</div>
@@ -97,7 +99,7 @@
 					<form id="try_sequence">
 						<input type="text" autocomplete="off" name="attempt" value="" id="attempt" class="game_input" maxlength="4"/>
 						<br/>
-						<input type="submit" value="Try to guess!"/>
+						<input type="submit" value="Try to guess!" id="submit_att"/>
 					</form>
 					<button type="button" id="abandon">Abandon</button>
 					<img id="spinner_end_game" alt="" src="/images/spinner.gif" style="display: none" />
@@ -149,7 +151,7 @@
 	<!-- Footer -->
 	<footer>
 		<div id="author">Autore: Teo Giacobbo 714217</div>
-		<div id="exam_session">Appello: XXXXXXXX</div>
+		<div id="exam_session">Appello: Luglio 2015</div>
 	</footer>
 	
 	<!-- SCRIPT CONTENENTI I VARI TEMPLATE USATI -->

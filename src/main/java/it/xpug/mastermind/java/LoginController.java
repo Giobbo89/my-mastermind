@@ -45,7 +45,10 @@ public class LoginController extends Controller{
 			String[] names = {"result","num_games", "average", "session_id"};
 			String[] values = {nickname, String.valueOf(num_games), avg, session.getSessionId()};
 			writeBody(toJson(names, values));
-			response.addCookie(new Cookie("session_id", session.getSessionId()));
+			Cookie cookie = new Cookie("session_id", session.getSessionId());
+			// setto la durata del cookie prima che venga eliminato (4 ore)
+			cookie.setMaxAge(4 * 60 * 60);
+			response.addCookie(cookie);
 		}		
 	}
 	
@@ -53,6 +56,7 @@ public class LoginController extends Controller{
 	// sessione nel database
 	public void check_log() throws IOException {
 		try {
+			sessions_rep.deleteOldSessions();
 			for (Cookie cookie : request.getCookies()) {
 				Session session = sessions_rep.getSession(cookie.getValue());
 				// se vi è una sessione specificata nel cookie, eseguo il login per quell'utente

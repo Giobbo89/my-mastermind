@@ -27,6 +27,8 @@ function on_new_game() {
 function on_new_game_success(data) {
 	cont_attempts = 0;
 	array_attempts = [];
+	$("#attempt").prop( "disabled", false);
+	$("#submit_att").prop( "disabled", false);
 	$("#start_new_game").hide();
 	$("#game_id").text(data.game_id);
 	$("#attempts_table_div").text("");
@@ -71,6 +73,8 @@ function on_attempt_success(data) {
 		on_update_table(array_attempts);
 		if (data.result == "++++") {
 			$("#abandon").hide();
+			$("#attempt").prop( "disabled", true);
+			$("#submit_att").prop( "disabled", true);
 			$("#spinner_end_game").show();
 			$("#game_message").text("WELL DONE! YOU WIN!");
 			window.setTimeout(function() {

@@ -160,21 +160,21 @@ function hide_login_register() {
 // Funzione per il logout
 
 function on_logout() {
-	document.cookie = "session_id = '" + session_id + "'; expires = Sun, 03 Dec 1989 00:00:00 UTC"; 
+	document.cookie = "session_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 	$.ajax({
 		url: '/logout',
 		method: 'post',
-		success: on_logout_success,
 		data: {
 			session_id: session_id,
 		},
 	});
+	on_logout_success();
 }
 
 // Se la chiamata Ajax va a buon fine, effettuo il logout dell'utente e torno alla schermata
 // con le form per login e registrazione
 
-function on_logout_success(data) {
+function on_logout_success() {
 	$("#game").hide("slide", { direction: "up" }, 1000);
 	$("#rules").hide("slide", { direction: "up" }, 1000);
 	$("#ranking").hide("slide", { direction: "up" }, 1000);
